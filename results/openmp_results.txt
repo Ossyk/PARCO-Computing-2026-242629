@@ -1,0 +1,102 @@
+100*100 matrix, 0.8 sparsity:
+
+--- Testing thread scaling (static, chunk=100) ---
+Parallel CSR 100x100, nnz=1990, threads=1, schedule=static, chunk=100, 90th percentile=0.030 ms
+Parallel CSR 100x100, nnz=1990, threads=2, schedule=static, chunk=100, 90th percentile=0.074 ms
+Parallel CSR 100x100, nnz=1990, threads=4, schedule=static, chunk=100, 90th percentile=0.113 ms
+Parallel CSR 100x100, nnz=1990, threads=8, schedule=static, chunk=100, 90th percentile=0.205 ms
+
+--- Testing schedules (4 threads, chunk=100) ---
+Parallel CSR 100x100, nnz=1990, threads=4, schedule=static, chunk=100, 90th percentile=0.135 ms
+Parallel CSR 100x100, nnz=1990, threads=4, schedule=dynamic, chunk=100, 90th percentile=0.124 ms
+Parallel CSR 100x100, nnz=1990, threads=4, schedule=guided, chunk=100, 90th percentile=0.170 ms
+Parallel CSR 100x100, nnz=1990, threads=4, schedule=auto, chunk=default, 90th percentile=0.179 ms
+
+--- Testing chunk sizes (4 threads, dynamic) ---
+Parallel CSR 100x100, nnz=1990, threads=4, schedule=dynamic, chunk=1, 90th percentile=0.165 ms
+Parallel CSR 100x100, nnz=1990, threads=4, schedule=dynamic, chunk=10, 90th percentile=0.107 ms
+Parallel CSR 100x100, nnz=1990, threads=4, schedule=dynamic, chunk=100, 90th percentile=0.101 ms
+Parallel CSR 100x100, nnz=1990, threads=4, schedule=dynamic, chunk=1000, 90th percentile=0.157 ms
+Parallel CSR 100x100, nnz=1990, threads=4, schedule=dynamic, chunk=default, 90th percentile=0.162 ms
+=============================================================
+100*100 matrix, 0.2 sparsity
+--- Testing thread scaling (static, chunk=100) ---
+Parallel CSR 100x100, nnz=7965, threads=1, schedule=static, chunk=100, 90th percentile=0.069 ms
+Parallel CSR 100x100, nnz=7965, threads=2, schedule=static, chunk=100, 90th percentile=0.128 ms
+Parallel CSR 100x100, nnz=7965, threads=4, schedule=static, chunk=100, 90th percentile=0.242 ms
+Parallel CSR 100x100, nnz=7965, threads=8, schedule=static, chunk=100, 90th percentile=0.275 ms
+
+--- Testing schedules (4 threads, chunk=100) ---
+Parallel CSR 100x100, nnz=7965, threads=4, schedule=static, chunk=100, 90th percentile=0.258 ms
+Parallel CSR 100x100, nnz=7965, threads=4, schedule=dynamic, chunk=100, 90th percentile=0.271 ms
+Parallel CSR 100x100, nnz=7965, threads=4, schedule=guided, chunk=100, 90th percentile=0.216 ms
+Parallel CSR 100x100, nnz=7965, threads=4, schedule=auto, chunk=default, 90th percentile=0.196 ms
+
+--- Testing chunk sizes (4 threads, dynamic) ---
+Parallel CSR 100x100, nnz=7965, threads=4, schedule=dynamic, chunk=1, 90th percentile=0.190 ms
+Parallel CSR 100x100, nnz=7965, threads=4, schedule=dynamic, chunk=10, 90th percentile=0.142 ms
+Parallel CSR 100x100, nnz=7965, threads=4, schedule=dynamic, chunk=100, 90th percentile=0.175 ms
+Parallel CSR 100x100, nnz=7965, threads=4, schedule=dynamic, chunk=1000, 90th percentile=0.185 ms
+Parallel CSR 100x100, nnz=7965, threads=4, schedule=dynamic, chunk=default, 90th percentile=0.151 ms
+==================================================================
+500*500 matrix, 0.5 sparsity
+--- Testing thread scaling (static, chunk=100) ---
+Parallel CSR 500x500, nnz=123569, threads=1, schedule=static, chunk=100, 90th percentile=0.824 ms
+Parallel CSR 500x500, nnz=123569, threads=2, schedule=static, chunk=100, 90th percentile=0.592 ms
+Parallel CSR 500x500, nnz=123569, threads=4, schedule=static, chunk=100, 90th percentile=0.574 ms
+Parallel CSR 500x500, nnz=123569, threads=8, schedule=static, chunk=100, 90th percentile=0.318 ms
+
+--- Testing schedules (4 threads, chunk=100) ---
+Parallel CSR 500x500, nnz=123569, threads=4, schedule=static, chunk=100, 90th percentile=0.498 ms
+Parallel CSR 500x500, nnz=123569, threads=4, schedule=dynamic, chunk=100, 90th percentile=0.428 ms
+Parallel CSR 500x500, nnz=123569, threads=4, schedule=guided, chunk=100, 90th percentile=0.376 ms
+Parallel CSR 500x500, nnz=123569, threads=4, schedule=auto, chunk=default, 90th percentile=0.352 ms
+
+--- Testing chunk sizes (4 threads, dynamic) ---
+Parallel CSR 500x500, nnz=123569, threads=4, schedule=dynamic, chunk=1, 90th percentile=0.388 ms
+Parallel CSR 500x500, nnz=123569, threads=4, schedule=dynamic, chunk=10, 90th percentile=0.397 ms
+Parallel CSR 500x500, nnz=123569, threads=4, schedule=dynamic, chunk=100, 90th percentile=0.470 ms
+Parallel CSR 500x500, nnz=123569, threads=4, schedule=dynamic, chunk=1000, 90th percentile=0.876 ms
+Parallel CSR 500x500, nnz=123569, threads=4, schedule=dynamic, chunk=default, 90th percentile=0.610 ms
+==========================================================
+1000*1000 matrix, 0.8 sparsity
+--- Testing thread scaling (static, chunk=100) ---
+Parallel CSR 1000x1000, nnz=197863, threads=1, schedule=static, chunk=100, 90th percentile=1.318 ms
+Parallel CSR 1000x1000, nnz=197863, threads=2, schedule=static, chunk=100, 90th percentile=0.715 ms
+Parallel CSR 1000x1000, nnz=197863, threads=4, schedule=static, chunk=100, 90th percentile=0.632 ms
+Parallel CSR 1000x1000, nnz=197863, threads=8, schedule=static, chunk=100, 90th percentile=0.462 ms
+
+--- Testing schedules (4 threads, chunk=100) ---
+Parallel CSR 1000x1000, nnz=197863, threads=4, schedule=static, chunk=100, 90th percentile=0.549 ms
+Parallel CSR 1000x1000, nnz=197863, threads=4, schedule=dynamic, chunk=100, 90th percentile=0.704 ms
+Parallel CSR 1000x1000, nnz=197863, threads=4, schedule=guided, chunk=100, 90th percentile=0.628 ms
+Parallel CSR 1000x1000, nnz=197863, threads=4, schedule=auto, chunk=default, 90th percentile=0.527 ms
+
+--- Testing chunk sizes (4 threads, dynamic) ---
+Parallel CSR 1000x1000, nnz=197863, threads=4, schedule=dynamic, chunk=1, 90th percentile=0.702 ms
+Parallel CSR 1000x1000, nnz=197863, threads=4, schedule=dynamic, chunk=10, 90th percentile=0.542 ms
+Parallel CSR 1000x1000, nnz=197863, threads=4, schedule=dynamic, chunk=100, 90th percentile=0.613 ms
+Parallel CSR 1000x1000, nnz=197863, threads=4, schedule=dynamic, chunk=1000, 90th percentile=1.757 ms
+Parallel CSR 1000x1000, nnz=197863, threads=4, schedule=dynamic, chunk=default, 90th percentile=0.731 ms
+
+====================================================
+matrix 1000*1000, 0.2 sparsity
+--- Testing thread scaling (static, chunk=100) ---
+Parallel CSR 1000x1000, nnz=792005, threads=1, schedule=static, chunk=100, 90th percentile=5.083 ms
+Parallel CSR 1000x1000, nnz=792005, threads=2, schedule=static, chunk=100, 90th percentile=3.362 ms
+Parallel CSR 1000x1000, nnz=792005, threads=4, schedule=static, chunk=100, 90th percentile=2.154 ms
+Parallel CSR 1000x1000, nnz=792005, threads=8, schedule=static, chunk=100, 90th percentile=1.578 ms
+
+--- Testing schedules (4 threads, chunk=100) ---
+Parallel CSR 1000x1000, nnz=792005, threads=4, schedule=static, chunk=100, 90th percentile=2.138 ms
+Parallel CSR 1000x1000, nnz=792005, threads=4, schedule=dynamic, chunk=100, 90th percentile=2.085 ms
+Parallel CSR 1000x1000, nnz=792005, threads=4, schedule=guided, chunk=100, 90th percentile=1.889 ms
+Parallel CSR 1000x1000, nnz=792005, threads=4, schedule=auto, chunk=default, 90th percentile=1.772 ms
+
+--- Testing chunk sizes (4 threads, dynamic) ---
+Parallel CSR 1000x1000, nnz=792005, threads=4, schedule=dynamic, chunk=1, 90th percentile=1.927 ms
+Parallel CSR 1000x1000, nnz=792005, threads=4, schedule=dynamic, chunk=10, 90th percentile=1.830 ms
+Parallel CSR 1000x1000, nnz=792005, threads=4, schedule=dynamic, chunk=100, 90th percentile=2.003 ms
+Parallel CSR 1000x1000, nnz=792005, threads=4, schedule=dynamic, chunk=1000, 90th percentile=5.429 ms
+Parallel CSR 1000x1000, nnz=792005, threads=4, schedule=dynamic, chunk=default, 90th percentile=1.946 ms
+

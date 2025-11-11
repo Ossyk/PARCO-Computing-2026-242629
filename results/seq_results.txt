@@ -1,0 +1,15 @@
+compiling without -O flags
+
+Sequential CSR 100x100, nnz=1990, 90th percentile: 0.013 ms
+Sequential CSR 100x100, nnz=7965, 90th percentile: 0.052 ms
+Sequential CSR 500x500, nnz=123569, 90th percentile: 0.816 ms
+Sequential CSR 1000x1000, nnz=197863, 90th percentile: 1.369 ms
+Sequential CSR 1000x1000, nnz=792005, 90th percentile: 5.187 ms
+
+compiling with -O2 flag
+
+Sequential CSR 100x100, nnz=1990, 90th percentile: 0.003 ms
+Sequential CSR 100x100, nnz=7965, 90th percentile: 0.011 ms
+Sequential CSR 500x500, nnz=123569, 90th percentile: 0.207 ms
+Sequential CSR 1000x1000, nnz=197863, 90th percentile: 0.353 ms
+Sequential CSR 1000x1000, nnz=792005, 90th percentile: 1.356 ms
