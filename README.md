@@ -32,11 +32,12 @@ src/simd_vs_parallfor  matrices/m3.csr 4 dynamic
 
 scripts/run_linux.sh matrices/m5.csr
 
-**OPTION 2 : run directly the interactive script (provate entrambi please)**
+**OPTION 2 : run directly the interactive script (provate entrambi please, cancellando la directory e facendo git clone e run directly il prossimo cmd)**
 
 scripts/interactive_script_l.sh
    
       (do you get permission error or a  bash ^M error?)
+
 
 
 
