@@ -4,7 +4,7 @@ git clone https://github.com/Ossyk/PARCO-Computing-2026-242629.git
 
    2)  
 
-qsub -I -q short_cpuQ -l select=1:ncpus=64:mem=64gb,walltime=01:00:00
+qsub -I -q short_cpuQ -l select=1:ncpus=64:mem=64gb,walltime=01:00:00 (only on cluster (moez ignore this))
 
    3)  access the project folder
    
