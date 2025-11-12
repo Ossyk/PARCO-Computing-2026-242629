@@ -39,6 +39,8 @@ echo --- Testing thread scaling ---
 %EXE% 2 %SCHEDULER% %CHUNKS% %MATRIX%
 %EXE% 4 %SCHEDULER% %CHUNKS% %MATRIX%
 %EXE% 8 %SCHEDULER% %CHUNKS% %MATRIX%
+%EXE% 16 %SCHEDULER% %CHUNKS% %MATRIX%
+%EXE% 32 %SCHEDULER% %CHUNKS% %MATRIX%
 echo.
 
 :: Test different schedules with 4 threads

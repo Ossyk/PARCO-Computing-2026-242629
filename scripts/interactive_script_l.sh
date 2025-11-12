@@ -10,12 +10,12 @@ echo
 while true; do
     echo "=== Main Menu ==="
     echo "1) Create your matrix"
-    echo "2) Run sequential code"
-    echo "3) Run parallel code"
+    echo "2) Run a sequential code"
+    echo "3) Run a parallel code"
     echo "4) Run default benchmark code"
     echo "5) Run personalized benchmark code"
-echo "6) See available matrices"    
-echo "7) Exit"
+    echo "6) See available matrices"    
+    echo "7) Exit"
 
     echo -n "Enter your choice (1-7): "
     

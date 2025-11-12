@@ -47,6 +47,8 @@ echo "--- Testing thread scaling (static, chunk=100) ---"
 "$EXE" 2 static 100 "$MATRIX"
 "$EXE" 4 static 100 "$MATRIX"
 "$EXE" 8 static 100 "$MATRIX"
+"$EXE" 16 static 100 "$MATRIX"
+"$EXE" 32 static 100 "$MATRIX"
 echo
 
 # Test different schedules with 4 threads
