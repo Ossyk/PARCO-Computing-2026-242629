@@ -31,7 +31,7 @@ while true; do
 	    read size
 	    echo "Enter sparsity:"
  	    read sparsity 
-	    echo "Enter matrix's name (other than m1-m5 and already chosen names):"
+	    echo "Enter matrix's name (other than m1-m5 and already chosen names without .csr):"
 	    read name
 
 	    gcc src/matrix_generator.c src/csr_utils.c -o src/matrix_generator
@@ -41,7 +41,7 @@ while true; do
             ;;
         2)
             echo "Running sequential code..."
-            echo "Enter matrix name (from m1 to m5 or created)"
+            echo "Enter matrix name (from m1 to m5 or created without .csr)"
 	    read name
 	    gcc -std=c99 -lm src/spMV_seq.c src/csr_utils.c -o src/spMV_seq
 	    src/spMV_seq matrices/$name.csr
@@ -55,7 +55,7 @@ while true; do
 		read scheduler
 		echo "enter chunks:"
 		read chunks
-		echo "enter matrix name:"
+		echo "enter matrix name: (without .csr)"
 		read name
 	        gcc -fopenmp -std=c99 -lm src/spMV_parall.c src/csr_utils.c -o src/spMV_parall 
 		src/spMV_parall $threads $scheduler $chunks matrices/$name.csr
@@ -64,7 +64,7 @@ while true; do
         
 	4)    
 	    echo "running default benchmark test.."
-	    echo "Enter matrix name (from m1 to m5 or created)"
+	    echo "Enter matrix name (from m1 to m5 or created without .csr)"
 	    read name
 
 	    gcc -fopenmp -std=c99 -lm src/spMV_parall.c src/csr_utils.c -o src/spMV_parall 
@@ -82,7 +82,7 @@ while true; do
 		read scheduler
 		echo "enter chunks:"
 		read chunks
-		echo "enter matrix name:"
+		echo "enter matrix name: (without .csr)"
 		read matrix
 
 	        gcc -fopenmp -std=c99 -lm src/spMV_parall.c src/csr_utils.c -o src/spMV_parall 
