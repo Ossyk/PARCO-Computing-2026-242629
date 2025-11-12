@@ -1,4 +1,5 @@
 // spmv_full_benchmark_cli.c
+#define _POSIX_C_SOURCE 200112L   // enable POSIX setenv()
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
