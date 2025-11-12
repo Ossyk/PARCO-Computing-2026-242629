@@ -34,8 +34,9 @@ scripts/run_linux.sh matrices/m5.csr
 
 **OPTION 2 : run directly the interactive script (provate entrambi please)**
 
-scripts/interactive_script.sh
+scripts/interactive_script_l.sh
    
       (do you get permission error or a  bash ^M error?)
+
 
 
