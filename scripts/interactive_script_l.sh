@@ -7,6 +7,8 @@ cd "$SCRIPT_DIR/.."
 echo "Welcome to 242629's script!"
 echo
 
+
+
 while true; do
     echo "=== Main Menu ==="
     echo "1) Create your matrix"
@@ -31,6 +33,7 @@ while true; do
  	    read sparsity 
 	    echo "Enter matrix's name (other than m1-m5 and already chosen names):"
 	    read name
+
 	    gcc src/matrix_generator.c src/csr_utils.c -o src/matrix_generator
 
 	    src/matrix_generator $size $size $sparsity matrices/$name.csr
@@ -40,7 +43,7 @@ while true; do
             echo "Running sequential code..."
             echo "Enter matrix name (from m1 to m5 or created)"
 	    read name
-	    gcc -std=c99 src/spMV_seq.c src/csr_utils.c -o src/spMV_seq
+	    gcc -std=c99 -lm src/spMV_seq.c src/csr_utils.c -o src/spMV_seq
 	    src/spMV_seq matrices/$name.csr
             echo
             ;;
@@ -54,7 +57,7 @@ while true; do
 		read chunks
 		echo "enter matrix name:"
 		read name
-	        gcc -fopenmp -std=c99 src/spMV_parall.c src/csr_utils.c -o src/spMV_parall 
+	        gcc -fopenmp -std=c99 -lm src/spMV_parall.c src/csr_utils.c -o src/spMV_parall 
 		src/spMV_parall $threads $scheduler $chunks matrices/$name.csr
 		echo
             ;;
@@ -63,8 +66,11 @@ while true; do
 	    echo "running default benchmark test.."
 	    echo "Enter matrix name (from m1 to m5 or created)"
 	    read name
-		  chmod +x scripts/run_linux.sh
-	    sed -i 's/\r$//' scripts/run_linux.sh
+
+	    gcc -fopenmp -std=c99 -lm src/spMV_parall.c src/csr_utils.c -o src/spMV_parall 
+
+	    #chmod +x scripts/run_linux.sh
+	    #sed -i 's/\r$//' scripts/run_linux.sh
 	    scripts/run_linux.sh matrices/$name.csr
 	    echo
             ;;
@@ -78,6 +84,8 @@ while true; do
 		read chunks
 		echo "enter matrix name:"
 		read matrix
+
+	        gcc -fopenmp -std=c99 -lm src/spMV_parall.c src/csr_utils.c -o src/spMV_parall 
 		scripts/run_linux_personalized.sh $threads $scheduler $chunks matrices/$name.csr
 		echo
 	    ;;	
