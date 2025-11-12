@@ -45,7 +45,9 @@ int main(int argc, char **argv) {
 
     const char *fname = argv[1];
     FILE *f = fopen(fname, "r");
-    if (!f) { perror("fopen"); return 1; }
+    if (!f) { fprintf(stderr, "Error: Choose a valid matrix name (m1-m5.csr)\n");
+        return 1; 
+    }
 
     size_t rows, cols, nnz;
     fscanf(f, "%zu %zu %zu", &rows, &cols, &nnz);
