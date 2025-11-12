@@ -182,7 +182,7 @@ This menu allows you to:
 - Execute default or personalized benchmarks  
 
 
-![Interactive Menu](images/interactive_menu.png)
+![Interactive Menu](plots/interactive%20menu.jpg)
 
 
 
