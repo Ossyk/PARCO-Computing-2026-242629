@@ -55,6 +55,8 @@ echo "--- Testing thread scaling ---"
 "$EXE" 8 "$SCHEDULER" "$CHUNKS" "$MATRIX"
 "$EXE" 16 "$SCHEDULER" "$CHUNKS" "$MATRIX"
 "$EXE" 32 "$SCHEDULER" "$CHUNKS" "$MATRIX"
+"$EXE" 64 "$SCHEDULER" "$CHUNKS" "$MATRIX"
+
 
 echo
 
