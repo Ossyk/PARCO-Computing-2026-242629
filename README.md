@@ -134,14 +134,13 @@ This menu allows you to:
 ###  Notes
 - The code **flushes the CPU cache** between runs to avoid timing bias.  
 - Each multiplication is executed **10 times**, and the **90th percentile** runtime is reported for stable measurement.  
-- The benchmark automatically detects and displays the number of non-zero elements in the matrix.  
-
 ---
 
 ###  Author
 **Oussema Kasraoui**  
 University of Trento – *Parallel Computing (I2PP_D1)*  
 Academic Year **2025 / 2026**
+
 
 
 
