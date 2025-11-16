@@ -45,7 +45,7 @@ cd PARCO-Computing-2026-242629/
 Compile with GCC inside the project directory:
 
 ```bash
-gcc src/matrix_generator.c src/csr_utils.c -o matrix_generator
+gcc src/matrix_generator.c src/csr_utils.c -o src/matrix_generator
 gcc -std=c99 -lm src/spMV_seq.c src/csr_utils.c -o src/spMV_seq
 gcc -fopenmp -std=c99 -lm src/spMV_parall.c src/csr_utils.c -o src/spMV_parall
 gcc -fopenmp -march=native -std=c99 -lm src/simd_vs_parallfor.c src/csr_utils.c -o src/simd_vs_parallfor
@@ -99,18 +99,8 @@ src/simd_vs_parallfor matrices/m3.csr 4 dynamic
 
 ---
 
-###  5. Run full benchmark (default script)
-```bash
-scripts/run_linux.sh <matrix_path>
-```
-Example:
-```bash
-scripts/run_linux.sh matrices/m3.csr
-```
 
----
-
-###  6. Run personalized benchmark (custom settings)
+###  5. Run full benchmark (custom settings)
 ```bash
 scripts/run_linux_personalized.sh <threads> <scheduler> <chunk> <matrix_path>
 ```
@@ -152,6 +142,7 @@ This menu allows you to:
 **Oussema Kasraoui**  
 University of Trento – *Parallel Computing (I2PP_D1)*  
 Academic Year **2025 / 2026**
+
 
 
 
