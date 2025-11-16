@@ -1,6 +1,4 @@
 #!/bin/bash
-# run.sh - Linux shell script to run spMV_parall
-# This script is in: project/scripts/
 
 # Get the script's directory and go to project root
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -47,7 +45,7 @@ echo "Matrix: $MATRIX"
 echo "==================================="
 echo
 
-# Test different thread counts with static schedule
+# Test different thread scaling
 echo "--- Testing thread scaling ---"
 "$EXE" 1 "$SCHEDULER" "$CHUNKS" "$MATRIX"
 "$EXE" 2 "$SCHEDULER" "$CHUNKS" "$MATRIX"
