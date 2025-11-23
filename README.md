@@ -24,19 +24,46 @@ qsub -I -q short_cpuQ -l select=1:ncpus=64:mem=64gb,walltime=01:00:00
 ```
 
 ---
-##  Option 1 — Manual Configuration
+##  Option 1 — Interactive Mode (Recommended)
+
+For an interactive experience:
 
 ###  Import from Git
 
-Clone the repository:
+Clone the repository and access the project directory :
 ```bash
 git clone https://github.com/Ossyk/PARCO-Computing-2026-242629.git
-```
-
-Access the project directory:
-```bash
 cd PARCO-Computing-2026-242629/
 ```
+### Run the interactive menu:
+
+```bash
+scripts/interactive_script_l.sh
+```
+
+This menu allows you to:
+- Create a new matrix  
+- View available matrices  
+- Run sequential and parallel versions  
+- Execute default or personalized benchmarks  
+
+
+![Interactive Menu](plots/interactive%20menu.jpg)
+
+
+
+---
+
+##  Option 2 — Manual Configuration
+
+###  Import from Git
+
+Clone the repository and access the project directory :
+```bash
+git clone https://github.com/Ossyk/PARCO-Computing-2026-242629.git
+cd PARCO-Computing-2026-242629/
+```
+
 
 ---
 
@@ -111,25 +138,7 @@ scripts/run_linux_personalized.sh 4 dynamic 10 matrices/m4.csr
 
 ---
 
-##  Option 2 — Interactive Mode (Recommended)
 
-For an easy experience, clone the project from git, access the project directory and run the interactive menu:
-```bash
-scripts/interactive_script_l.sh
-```
-
-This menu allows you to:
-- Create a new matrix  
-- View available matrices  
-- Run sequential and parallel versions  
-- Execute default or personalized benchmarks  
-
-
-![Interactive Menu](plots/interactive%20menu.jpg)
-
-
-
----
 
 ###  Notes
 - The code **flushes the CPU cache** between runs to avoid timing bias.  
@@ -140,6 +149,7 @@ This menu allows you to:
 **Oussema Kasraoui**  
 University of Trento – *Parallel Computing (I2PP_D1)*  
 Academic Year **2025 / 2026**
+
 
 
 
