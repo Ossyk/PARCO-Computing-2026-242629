@@ -37,8 +37,16 @@ cd PARCO-Computing-2026-242629/
 ```
 ### Run the interactive menu:
 
+Linux:
+
 ```bash
 scripts/interactive_script_l.sh
+```
+
+Windows:
+```bash
+cd scripts
+./scripts/interactive_script_wd.bat
 ```
 
 This menu allows you to:
@@ -149,6 +157,7 @@ scripts/run_linux_personalized.sh 4 dynamic 10 matrices/m4.csr
 **Oussema Kasraoui**  
 University of Trento – *Parallel Computing (I2PP_D1)*  
 Academic Year **2025 / 2026**
+
 
 
 
