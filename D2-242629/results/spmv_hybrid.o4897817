@@ -1,0 +1,51 @@
+********************************
+Hybrid MPI+OpenMP Strong scaling
+********************************
+
+Matrix: ./matrices/webbase-1M.mtx
+---------------------------------
+MPI=128 | OMP=1
+Total received entries across ranks = 3105415 (expected 3105536)
+Total FLOPs = 6210830  &  Performance = 0.001 GFLOP/s
+NNZ per rank: min=21211 avg=24261.1 max=29738
+Time per SpMV: 4.934014 s (5.7%)
+Communication time: 81.765008 s (94.3%)
+  +- Ghost exchange: 72.648008 s (83.8%)
+  +- Result gather: 9.117000 s (10.5%)
+MPI=64 | OMP=2
+Total received entries across ranks = 3105476 (expected 3105536)
+Total FLOPs = 6210952  &  Performance = 0.003 GFLOP/s
+NNZ per rank: min=43806 avg=48523.1 max=54170
+Time per SpMV: 1.780004 s (9.4%)
+Communication time: 17.209048 s (90.6%)
+  +- Ghost exchange: 14.033034 s (73.9%)
+  +- Result gather: 3.176014 s (16.7%)
+MPI=32 | OMP=4
+Total received entries across ranks = 3105508 (expected 3105536)
+Total FLOPs = 6211016  &  Performance = 0.008 GFLOP/s
+NNZ per rank: min=91344 avg=97047.1 max=103327
+Time per SpMV: 0.758986 s (6.4%)
+Communication time: 11.164020 s (93.6%)
+  +- Ghost exchange: 9.572019 s (80.3%)
+  +- Result gather: 1.592001 s (13.4%)
+MPI=16 | OMP=8
+Total received entries across ranks = 3105523 (expected 3105536)
+Total FLOPs = 6211046  &  Performance = 0.018 GFLOP/s
+NNZ per rank: min=184051 avg=194095.2 max=200899
+Time per SpMV: 0.351989 s (8.3%)
+Communication time: 3.890002 s (91.7%)
+  +- Ghost exchange: 3.274000 s (77.2%)
+  +- Result gather: 0.616002 s (14.5%)
+MPI=8 | OMP=16
+Total received entries across ranks = 3105530 (expected 3105536)
+Total FLOPs = 6211060  &  Performance = 0.047 GFLOP/s
+NNZ per rank: min=377397 avg=388191.2 max=393896
+Time per SpMV: 0.132004 s (10.0%)
+Communication time: 1.188264 s (90.0%)
+  +- Ghost exchange: 0.703987 s (53.3%)
+  +- Result gather: 0.484277 s (36.7%)
+
+Matrix: ./matrices/Flan_1565.mtx
+---------------------------------
+MPI=128 | OMP=1
+=>> PBS: job killed: walltime 1826 exceeded limit 1800

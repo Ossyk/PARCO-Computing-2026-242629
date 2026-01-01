@@ -1,0 +1,73 @@
+Nb of processes: 1
+Total received entries across ranks = 200000 (expected 200000)
+Total FLOPs = 400000  &  Performance = 0.356 GFLOP/s
+NNZ per rank: min=200000 avg=200000.0 max=200000
+Time per SpMV: 0.001124 s (84.7%)
+Communication time: 0.000203 s (15.3%)
+  +- Ghost exchange: 0.000064 s (4.8%)
+  +- Result gather: 0.000139 s (10.5%)
+
+Nb of processes: 2
+Total received entries across ranks = 399999 (expected 400000)
+Total FLOPs = 799998  &  Performance = 0.592 GFLOP/s
+NNZ per rank: min=199999 avg=199999.5 max=200000
+Time per SpMV: 0.001351 s (50.8%)
+Communication time: 0.001307 s (49.2%)
+  +- Ghost exchange: 0.000729 s (27.4%)
+  +- Result gather: 0.000578 s (21.7%)
+
+Nb of processes: 4
+Total received entries across ranks = 799997 (expected 800000)
+Total FLOPs = 1599994  &  Performance = 1.124 GFLOP/s
+NNZ per rank: min=199998 avg=199999.2 max=200000
+Time per SpMV: 0.001424 s (10.6%)
+Communication time: 0.012055 s (89.4%)
+  +- Ghost exchange: 0.009003 s (66.8%)
+  +- Result gather: 0.003052 s (22.6%)
+
+Nb of processes: 8
+Total received entries across ranks = 1599993 (expected 1600000)
+Total FLOPs = 3199986  &  Performance = 0.625 GFLOP/s
+NNZ per rank: min=199998 avg=199999.1 max=200000
+Time per SpMV: 0.005119 s (40.5%)
+Communication time: 0.007532 s (59.5%)
+  +- Ghost exchange: 0.005703 s (45.1%)
+  +- Result gather: 0.001828 s (14.5%)
+
+Nb of processes: 16
+Total received entries across ranks = 3199985 (expected 3200000)
+Total FLOPs = 6399970  &  Performance = 1.036 GFLOP/s
+NNZ per rank: min=199995 avg=199999.1 max=200000
+Time per SpMV: 0.006179 s (21.6%)
+Communication time: 0.022465 s (78.4%)
+  +- Ghost exchange: 0.019690 s (68.7%)
+  +- Result gather: 0.002775 s (9.7%)
+
+Nb of processes: 32
+Total received entries across ranks = 6399971 (expected 6400000)
+Total FLOPs = 12799942  &  Performance = 1.099 GFLOP/s
+NNZ per rank: min=199998 avg=199999.1 max=200000
+Time per SpMV: 0.011646 s (13.5%)
+Communication time: 0.074803 s (86.5%)
+  +- Ghost exchange: 0.069489 s (80.4%)
+  +- Result gather: 0.005313 s (6.1%)
+
+Nb of processes: 64
+Total received entries across ranks = 12799939 (expected 12800000)
+Total FLOPs = 25599878  &  Performance = 1.628 GFLOP/s
+NNZ per rank: min=199997 avg=199999.0 max=200000
+Time per SpMV: 0.015727 s (5.1%)
+Communication time: 0.289838 s (94.9%)
+  +- Ghost exchange: 0.278651 s (91.2%)
+  +- Result gather: 0.011187 s (3.7%)
+
+Nb of processes: 128
+Total received entries across ranks = 25599879 (expected 25600000)
+Total FLOPs = 51199758  &  Performance = 4.486 GFLOP/s
+NNZ per rank: min=199997 avg=199999.1 max=200000
+Time per SpMV: 0.011414 s (1.0%)
+Communication time: 1.138632 s (99.0%)
+  +- Ghost exchange: 1.115592 s (97.0%)
+  +- Result gather: 0.023040 s (2.0%)
+
+

@@ -1,0 +1,183 @@
+
+*************************
+Weak scaling
+*************************
+Nb of processes: 1
+Total FLOPs = 400000  &  Performance = 0.358 GFLOP/s
+NNZ per rank: min=200000 avg=200000.0 max=200000
+Time per SpMV: 0.001118 s (80.3%)
+Communication time: 0.000274 s (19.7%)
+  +- Ghost exchange: 0.000125 s (9.0%)
+  +- Result gather: 0.000149 s (10.7%)
+
+ Performance counter stats for 'mpirun -np 1 ./spmv_mpi randomN20k.mtx':
+
+     2,199,847,147      cycles:u
+     2,902,784,014      instructions:u            #    1.32  insn per cycle
+         5,923,977      cache-references:u
+         4,468,163      cache-misses:u            #   75.425 % of all cache refs
+     1,686,706,366      L1-dcache-loads:u
+         6,980,909      L1-dcache-load-misses:u   #    0.41% of all L1-dcache hits
+            55,735      LLC-loads:u
+            45,662      LLC-load-misses:u         #   81.93% of all LL-cache hits
+
+       0.708028376 seconds time elapsed
+
+       0.672778000 seconds user
+       0.024489000 seconds sys
+
+
+
+Nb of processes: 2
+Total FLOPs = 800000  &  Performance = 0.520 GFLOP/s
+NNZ per rank: min=200000 avg=200000.0 max=200000
+Time per SpMV: 0.001539 s (70.5%)
+Communication time: 0.000643 s (29.5%)
+  +- Ghost exchange: 0.000432 s (19.8%)
+  +- Result gather: 0.000211 s (9.6%)
+
+ Performance counter stats for 'mpirun -np 2 ./spmv_mpi randomN40k.mtx':
+
+     4,822,830,526      cycles:u
+     7,039,956,817      instructions:u            #    1.46  insn per cycle
+        12,629,625      cache-references:u
+         9,149,004      cache-misses:u            #   72.441 % of all cache refs
+     3,902,706,656      L1-dcache-loads:u
+        14,697,580      L1-dcache-load-misses:u   #    0.38% of all L1-dcache hits
+           233,320      LLC-loads:u
+           194,984      LLC-load-misses:u         #   83.57% of all LL-cache hits
+
+       0.773618281 seconds time elapsed
+
+       1.478501000 seconds user
+       0.048653000 seconds sys
+
+
+
+Nb of processes: 4
+Total FLOPs = 1600000  &  Performance = 0.922 GFLOP/s
+NNZ per rank: min=200000 avg=200000.0 max=200000
+Time per SpMV: 0.001736 s (58.7%)
+Communication time: 0.001221 s (41.3%)
+  +- Ghost exchange: 0.000711 s (24.1%)
+  +- Result gather: 0.000510 s (17.2%)
+
+ Performance counter stats for 'mpirun -np 4 ./spmv_mpi randomN80k.mtx':
+
+    11,271,593,226      cycles:u
+    18,765,057,741      instructions:u            #    1.66  insn per cycle
+        25,819,098      cache-references:u
+        18,046,281      cache-misses:u            #   69.895 % of all cache refs
+     9,822,101,361      L1-dcache-loads:u
+        30,361,747      L1-dcache-load-misses:u   #    0.31% of all L1-dcache hits
+         1,586,278      LLC-loads:u
+           669,341      LLC-load-misses:u         #   42.20% of all LL-cache hits
+
+       0.908640068 seconds time elapsed
+
+       3.470974000 seconds user
+       0.110568000 seconds sys
+
+
+
+Nb of processes: 8
+Total FLOPs = 3200000  &  Performance = 0.800 GFLOP/s
+NNZ per rank: min=200000 avg=200000.0 max=200000
+Time per SpMV: 0.003998 s (62.6%)
+Communication time: 0.002387 s (37.4%)
+  +- Ghost exchange: 0.001426 s (22.3%)
+  +- Result gather: 0.000961 s (15.0%)
+
+ Performance counter stats for 'mpirun -np 8 ./spmv_mpi randomN160k.mtx':
+
+    29,461,768,393      cycles:u
+    54,868,806,579      instructions:u            #    1.86  insn per cycle
+        59,177,362      cache-references:u
+        38,844,219      cache-misses:u            #   65.640 % of all cache refs
+    27,091,703,474      L1-dcache-loads:u
+        62,721,518      L1-dcache-load-misses:u   #    0.23% of all L1-dcache hits
+        10,181,774      LLC-loads:u
+         2,765,672      LLC-load-misses:u         #   27.16% of all LL-cache hits
+
+       1.216974062 seconds time elapsed
+
+       9.091652000 seconds user
+       0.292556000 seconds sys
+
+
+
+Nb of processes: 16
+Total FLOPs = 6400000  &  Performance = 1.024 GFLOP/s
+NNZ per rank: min=200000 avg=200000.0 max=200000
+Time per SpMV: 0.006251 s (53.4%)
+Communication time: 0.005456 s (46.6%)
+  +- Ghost exchange: 0.002931 s (25.0%)
+  +- Result gather: 0.002525 s (21.6%)
+
+ Performance counter stats for 'mpirun -np 16 ./spmv_mpi randomN320k.mtx':
+
+    87,166,538,493      cycles:u
+   183,705,446,563      instructions:u            #    2.11  insn per cycle
+       134,990,446      cache-references:u
+        83,141,926      cache-misses:u            #   61.591 % of all cache refs
+    86,020,992,363      L1-dcache-loads:u
+       127,807,466      L1-dcache-load-misses:u   #    0.15% of all L1-dcache hits
+        33,978,428      LLC-loads:u
+        10,788,314      LLC-load-misses:u         #   31.75% of all LL-cache hits
+
+       1.775671557 seconds time elapsed
+
+      27.093987000 seconds user
+       0.834926000 seconds sys
+
+
+
+Nb of processes: 32
+Total FLOPs = 12800000  &  Performance = 1.678 GFLOP/s
+NNZ per rank: min=200000 avg=200000.0 max=200000
+Time per SpMV: 0.007629 s (41.1%)
+Communication time: 0.010946 s (58.9%)
+  +- Ghost exchange: 0.006675 s (35.9%)
+  +- Result gather: 0.004271 s (23.0%)
+
+ Performance counter stats for 'mpirun -np 32 ./spmv_mpi randomN640k.mtx':
+
+   300,596,906,430      cycles:u
+   729,212,020,342      instructions:u            #    2.43  insn per cycle
+       294,793,106      cache-references:u
+       207,693,937      cache-misses:u            #   70.454 % of all cache refs
+   327,871,626,001      L1-dcache-loads:u
+       261,606,690      L1-dcache-load-misses:u   #    0.08% of all L1-dcache hits
+        82,792,130      LLC-loads:u
+        58,186,401      LLC-load-misses:u         #   70.28% of all LL-cache hits
+
+       3.202618760 seconds time elapsed
+
+      97.640113000 seconds user
+       3.451734000 seconds sys
+
+
+
+Nb of processes: 64
+Total FLOPs = 25600000  &  Performance = 0.492 GFLOP/s
+NNZ per rank: min=200000 avg=200000.0 max=200000
+Time per SpMV: 0.051995 s (8.6%)
+Communication time: 0.550694 s (91.4%)
+  +- Ghost exchange: 0.493718 s (81.9%)
+  +- Result gather: 0.056976 s (9.5%)
+
+ Performance counter stats for 'mpirun -np 64 ./spmv_mpi random1M280k.mtx':
+
+ 1,307,312,645,578      cycles:u
+ 3,580,344,205,964      instructions:u            #    2.74  insn per cycle
+       639,432,779      cache-references:u
+       476,631,047      cache-misses:u            #   74.540 % of all cache refs
+ 1,568,554,978,656      L1-dcache-loads:u
+       614,438,872      L1-dcache-load-misses:u   #    0.04% of all L1-dcache hits
+       183,940,207      LLC-loads:u
+       163,477,072      LLC-load-misses:u         #   88.88% of all LL-cache hits
+
+       9.041364853 seconds time elapsed
+
+     528.391480000 seconds user
+      18.755382000 seconds sys

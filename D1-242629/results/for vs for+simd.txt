@@ -1,0 +1,16 @@
+8 threads + m1 (100*100 _ 1990 nnz)
+static: Speedup (simd/for) = 0.84x
+dynamic: Speedup (simd/for) = 1.38x
+
+4 threads + m1
+static: Speedup (simd/for) = 1.34x
+dynamic: Speedup (simd/for) = 1.17x
+
+8 threads + m4 (1000*1000 _ 197k nnz)
+static: Speedup (simd/for) = 0.92x
+dynamic: Speedup (simd/for) = 1.08x
+
+4 threads + m4 
+static: Speedup (simd/for) = 1.00x
+dynamic: Speedup (simd/for) = 1.02x
+

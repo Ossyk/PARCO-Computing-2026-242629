@@ -1,0 +1,453 @@
+***********************************
+         STRONG SCALING — 1D
+***********************************
+
+Matrix: ./matrices/webbase-1M.mtx
+------------------------------------
+MPI processes: 1
+Total received entries across ranks = 3105536 (expected 3105536)
+Total FLOPs = 6211072  &  Performance = 0.974 GFLOP/s
+NNZ per rank: min=3105536 avg=3105536.0 max=3105536
+Time per SpMV: 0.006374 s (46.8%)
+Communication time: 0.007231 s (53.2%)
+  +- Ghost exchange: 0.003464 s (25.5%)
+  +- Result gather: 0.003767 s (27.7%)
+
+MPI processes: 2
+Total received entries across ranks = 3105535 (expected 3105536)
+Total FLOPs = 6211070  &  Performance = 1.808 GFLOP/s
+NNZ per rank: min=1540872 avg=1552767.5 max=1564663
+Time per SpMV: 0.003435 s (19.1%)
+Communication time: 0.014525 s (80.9%)
+  +- Ghost exchange: 0.008134 s (45.3%)
+  +- Result gather: 0.006392 s (35.6%)
+
+MPI processes: 4
+Total received entries across ranks = 3105533 (expected 3105536)
+Total FLOPs = 6211066  &  Performance = 3.355 GFLOP/s
+NNZ per rank: min=764903 avg=776383.2 max=782681
+Time per SpMV: 0.001851 s (8.6%)
+Communication time: 0.019699 s (91.4%)
+  +- Ghost exchange: 0.013977 s (64.9%)
+  +- Result gather: 0.005722 s (26.5%)
+
+MPI processes: 8
+Total received entries across ranks = 3105530 (expected 3105536)
+Total FLOPs = 6211060  &  Performance = 3.675 GFLOP/s
+NNZ per rank: min=377397 avg=388191.2 max=393896
+Time per SpMV: 0.001690 s (4.3%)
+Communication time: 0.037960 s (95.7%)
+  +- Ghost exchange: 0.030436 s (76.8%)
+  +- Result gather: 0.007524 s (19.0%)
+
+MPI processes: 16
+Total received entries across ranks = 3105523 (expected 3105536)
+Total FLOPs = 6211046  &  Performance = 4.225 GFLOP/s
+NNZ per rank: min=184051 avg=194095.2 max=200899
+Time per SpMV: 0.001470 s (2.3%)
+Communication time: 0.061473 s (97.7%)
+  +- Ghost exchange: 0.055171 s (87.7%)
+  +- Result gather: 0.006302 s (10.0%)
+
+MPI processes: 32
+Total received entries across ranks = 3105508 (expected 3105536)
+Total FLOPs = 6211016  &  Performance = 7.723 GFLOP/s
+NNZ per rank: min=91344 avg=97047.1 max=103327
+Time per SpMV: 0.000804 s (0.7%)
+Communication time: 0.118444 s (99.3%)
+  +- Ghost exchange: 0.112034 s (93.9%)
+  +- Result gather: 0.006410 s (5.4%)
+
+MPI processes: 64
+Total received entries across ranks = 3105476 (expected 3105536)
+Total FLOPs = 6210952  &  Performance = 6.030 GFLOP/s
+NNZ per rank: min=43806 avg=48523.1 max=54170
+Time per SpMV: 0.001030 s (0.5%)
+Communication time: 0.221896 s (99.5%)
+  +- Ghost exchange: 0.215796 s (96.8%)
+  +- Result gather: 0.006101 s (2.7%)
+
+MPI processes: 128
+Total received entries across ranks = 3105415 (expected 3105536)
+Total FLOPs = 6210830  &  Performance = 8.672 GFLOP/s
+NNZ per rank: min=21211 avg=24261.1 max=29738
+Time per SpMV: 0.000716 s (0.2%)
+Communication time: 0.441585 s (99.8%)
+  +- Ghost exchange: 0.435392 s (98.4%)
+  +- Result gather: 0.006193 s (1.4%)
+
+
+Matrix: ./matrices/Flan_1565.mtx
+------------------------------------
+MPI processes: 1
+Total received entries across ranks = 59485419 (expected 59485419)
+Total FLOPs = 118970838  &  Performance = 1.650 GFLOP/s
+NNZ per rank: min=59485419 avg=59485419.0 max=59485419
+Time per SpMV: 0.072109 s (87.2%)
+Communication time: 0.010623 s (12.8%)
+  +- Ghost exchange: 0.005296 s (6.4%)
+  +- Result gather: 0.005327 s (6.4%)
+
+MPI processes: 2
+Total received entries across ranks = 59485418 (expected 59485419)
+Total FLOPs = 118970836  &  Performance = 3.271 GFLOP/s
+NNZ per rank: min=29719796 avg=29742709.0 max=29765622
+Time per SpMV: 0.036373 s (64.2%)
+Communication time: 0.020305 s (35.8%)
+  +- Ghost exchange: 0.010734 s (18.9%)
+  +- Result gather: 0.009571 s (16.9%)
+
+MPI processes: 4
+Total received entries across ranks = 59485416 (expected 59485419)
+Total FLOPs = 118970832  &  Performance = 5.399 GFLOP/s
+NNZ per rank: min=14856452 avg=14871354.0 max=14885553
+Time per SpMV: 0.022035 s (38.3%)
+Communication time: 0.035502 s (61.7%)
+  +- Ghost exchange: 0.024501 s (42.6%)
+  +- Result gather: 0.011001 s (19.1%)
+
+MPI processes: 8
+Total received entries across ranks = 59485413 (expected 59485419)
+Total FLOPs = 118970826  &  Performance = 10.714 GFLOP/s
+NNZ per rank: min=7427270 avg=7435676.6 max=7442997
+Time per SpMV: 0.011104 s (18.4%)
+Communication time: 0.049276 s (81.6%)
+  +- Ghost exchange: 0.039429 s (65.3%)
+  +- Result gather: 0.009848 s (16.3%)
+
+MPI processes: 16
+Total received entries across ranks = 59485404 (expected 59485419)
+Total FLOPs = 118970808  &  Performance = 19.025 GFLOP/s
+NNZ per rank: min=3711833 avg=3717837.8 max=3723959
+Time per SpMV: 0.006253 s (5.9%)
+Communication time: 0.099859 s (94.1%)
+  +- Ghost exchange: 0.091012 s (85.8%)
+  +- Result gather: 0.008847 s (8.3%)
+
+MPI processes: 32
+Total received entries across ranks = 59485389 (expected 59485419)
+Total FLOPs = 118970778  &  Performance = 23.314 GFLOP/s
+NNZ per rank: min=1854658 avg=1858918.4 max=1863105
+Time per SpMV: 0.005103 s (2.7%)
+Communication time: 0.185845 s (97.3%)
+  +- Ghost exchange: 0.175459 s (91.9%)
+  +- Result gather: 0.010386 s (5.4%)
+
+MPI processes: 64
+Total received entries across ranks = 59485360 (expected 59485419)
+Total FLOPs = 118970720  &  Performance = 22.639 GFLOP/s
+NNZ per rank: min=927156 avg=929458.8 max=931852
+Time per SpMV: 0.005255 s (1.5%)
+Communication time: 0.355822 s (98.5%)
+  +- Ghost exchange: 0.346208 s (95.9%)
+  +- Result gather: 0.009613 s (2.7%)
+
+MPI processes: 128
+Total received entries across ranks = 59485305 (expected 59485419)
+Total FLOPs = 118970610  &  Performance = 26.516 GFLOP/s
+NNZ per rank: min=463070 avg=464728.9 max=466540
+Time per SpMV: 0.004487 s (0.6%)
+Communication time: 0.688657 s (99.4%)
+  +- Ghost exchange: 0.680164 s (98.1%)
+  +- Result gather: 0.008493 s (1.2%)
+
+
+Matrix: ./matrices/bcsstk18.mtx
+------------------------------------
+MPI processes: 1
+Total received entries across ranks = 80519 (expected 80519)
+Total FLOPs = 161038  &  Performance = 1.282 GFLOP/s
+NNZ per rank: min=80519 avg=80519.0 max=80519
+Time per SpMV: 0.000126 s (61.1%)
+Communication time: 0.000080 s (38.9%)
+  +- Ghost exchange: 0.000020 s (9.7%)
+  +- Result gather: 0.000060 s (29.2%)
+
+MPI processes: 2
+Total received entries across ranks = 80518 (expected 80519)
+Total FLOPs = 161036  &  Performance = 0.892 GFLOP/s
+NNZ per rank: min=40222 avg=40259.0 max=40296
+Time per SpMV: 0.000180 s (29.2%)
+Communication time: 0.000437 s (70.8%)
+  +- Ghost exchange: 0.000281 s (45.6%)
+  +- Result gather: 0.000155 s (25.2%)
+
+MPI processes: 4
+Total received entries across ranks = 80516 (expected 80519)
+Total FLOPs = 161032  &  Performance = 0.959 GFLOP/s
+NNZ per rank: min=20057 avg=20129.0 max=20222
+Time per SpMV: 0.000168 s (22.9%)
+Communication time: 0.000565 s (77.1%)
+  +- Ghost exchange: 0.000336 s (45.9%)
+  +- Result gather: 0.000229 s (31.2%)
+
+MPI processes: 8
+Total received entries across ranks = 80514 (expected 80519)
+Total FLOPs = 161028  &  Performance = 0.995 GFLOP/s
+NNZ per rank: min=9909 avg=10064.2 max=10153
+Time per SpMV: 0.000162 s (21.8%)
+Communication time: 0.000580 s (78.2%)
+  +- Ghost exchange: 0.000341 s (46.0%)
+  +- Result gather: 0.000238 s (32.1%)
+
+MPI processes: 16
+Total received entries across ranks = 80506 (expected 80519)
+Total FLOPs = 161012  &  Performance = 2.386 GFLOP/s
+NNZ per rank: min=4802 avg=5031.6 max=5205
+Time per SpMV: 0.000067 s (8.3%)
+Communication time: 0.000750 s (91.7%)
+  +- Ghost exchange: 0.000485 s (59.3%)
+  +- Result gather: 0.000265 s (32.4%)
+
+MPI processes: 32
+Total received entries across ranks = 80489 (expected 80519)
+Total FLOPs = 160978  &  Performance = 1.286 GFLOP/s
+NNZ per rank: min=2307 avg=2515.3 max=2645
+Time per SpMV: 0.000125 s (8.4%)
+Communication time: 0.001374 s (91.6%)
+  +- Ghost exchange: 0.000978 s (65.2%)
+  +- Result gather: 0.000396 s (26.4%)
+
+MPI processes: 64
+Total received entries across ranks = 80457 (expected 80519)
+Total FLOPs = 160914  &  Performance = 1.844 GFLOP/s
+NNZ per rank: min=1138 avg=1257.1 max=1359
+Time per SpMV: 0.000087 s (4.4%)
+Communication time: 0.001906 s (95.6%)
+  +- Ghost exchange: 0.001413 s (70.9%)
+  +- Result gather: 0.000493 s (24.7%)
+
+MPI processes: 128
+Total received entries across ranks = 80395 (expected 80519)
+Total FLOPs = 160790  &  Performance = 1.576 GFLOP/s
+NNZ per rank: min=520 avg=628.1 max=741
+Time per SpMV: 0.000102 s (3.3%)
+Communication time: 0.003021 s (96.7%)
+  +- Ghost exchange: 0.002064 s (66.1%)
+  +- Result gather: 0.000957 s (30.6%)
+
+***********************************
+         WEAK SCALING — 1D
+***********************************
+MPI processes: 1
+------------------
+Total received entries across ranks = 200000 (expected 200000)
+Total FLOPs = 400000  &  Performance = 2.308 GFLOP/s
+NNZ per rank: min=200000 avg=200000.0 max=200000
+Time per SpMV: 0.000173 s (58.9%)
+Communication time: 0.000121 s (41.1%)
+  +- Ghost exchange: 0.000025 s (8.3%)
+  +- Result gather: 0.000097 s (32.8%)
+
+ Performance counter stats for 'mpirun -np 1 ./src/spmv_mpi_parallelIO ./matrices/randomN20k.mtx':
+
+            202.22 msec task-clock:u              #    0.580 CPUs utilized          
+                 0      context-switches:u        #    0.000 K/sec                  
+                 0      cpu-migrations:u          #    0.000 K/sec                  
+             4,936      page-faults:u             #    0.024 M/sec                  
+       470,834,134      cycles:u                  #    2.328 GHz                    
+     1,240,611,210      instructions:u            #    2.63  insn per cycle         
+       145,623,414      branches:u                #  720.113 M/sec                  
+           563,233      branch-misses:u           #    0.39% of all branches        
+
+       0.348415222 seconds time elapsed
+
+       0.161617000 seconds user
+       0.043008000 seconds sys
+
+
+
+MPI processes: 2
+------------------
+Total received entries across ranks = 399999 (expected 400000)
+Total FLOPs = 799998  &  Performance = 2.832 GFLOP/s
+NNZ per rank: min=199999 avg=199999.5 max=200000
+Time per SpMV: 0.000283 s (19.3%)
+Communication time: 0.001181 s (80.7%)
+  +- Ghost exchange: 0.000774 s (52.9%)
+  +- Result gather: 0.000407 s (27.8%)
+
+ Performance counter stats for 'mpirun -np 2 ./src/spmv_mpi_parallelIO ./matrices/randomN40k.mtx':
+
+            264.80 msec task-clock:u              #    0.355 CPUs utilized          
+                 0      context-switches:u        #    0.000 K/sec                  
+                 0      cpu-migrations:u          #    0.000 K/sec                  
+             7,147      page-faults:u             #    0.027 M/sec                  
+       572,092,577      cycles:u                  #    2.160 GHz                    
+     1,511,855,616      instructions:u            #    2.64  insn per cycle         
+       208,821,793      branches:u                #  788.605 M/sec                  
+           622,484      branch-misses:u           #    0.30% of all branches        
+
+       0.745891079 seconds time elapsed
+
+       0.207191000 seconds user
+       0.072011000 seconds sys
+
+
+
+MPI processes: 4
+------------------
+Total received entries across ranks = 799997 (expected 800000)
+Total FLOPs = 1599994  &  Performance = 3.702 GFLOP/s
+NNZ per rank: min=199998 avg=199999.2 max=200000
+Time per SpMV: 0.000432 s (3.5%)
+Communication time: 0.011978 s (96.5%)
+  +- Ghost exchange: 0.009250 s (74.5%)
+  +- Result gather: 0.002728 s (22.0%)
+
+ Performance counter stats for 'mpirun -np 4 ./src/spmv_mpi_parallelIO ./matrices/randomN80k.mtx':
+
+            638.25 msec task-clock:u              #    0.798 CPUs utilized          
+                 0      context-switches:u        #    0.000 K/sec                  
+                 0      cpu-migrations:u          #    0.000 K/sec                  
+            12,191      page-faults:u             #    0.019 M/sec                  
+     1,421,606,904      cycles:u                  #    2.227 GHz                    
+     3,833,653,552      instructions:u            #    2.70  insn per cycle         
+       644,187,999      branches:u                # 1009.304 M/sec                  
+         1,215,487      branch-misses:u           #    0.19% of all branches        
+
+       0.799724563 seconds time elapsed
+
+       0.506778000 seconds user
+       0.146640000 seconds sys
+
+
+
+MPI processes: 8
+------------------
+Total received entries across ranks = 1599993 (expected 1600000)
+Total FLOPs = 3199986  &  Performance = 2.801 GFLOP/s
+NNZ per rank: min=199998 avg=199999.1 max=200000
+Time per SpMV: 0.001142 s (10.9%)
+Communication time: 0.009309 s (89.1%)
+  +- Ghost exchange: 0.007693 s (73.6%)
+  +- Result gather: 0.001616 s (15.5%)
+
+ Performance counter stats for 'mpirun -np 8 ./src/spmv_mpi_parallelIO ./matrices/randomN160k.mtx':
+
+          1,697.97 msec task-clock:u              #    1.806 CPUs utilized          
+                 0      context-switches:u        #    0.000 K/sec                  
+                 0      cpu-migrations:u          #    0.000 K/sec                  
+            21,833      page-faults:u             #    0.013 M/sec                  
+     3,782,161,567      cycles:u                  #    2.227 GHz                    
+    10,318,835,562      instructions:u            #    2.73  insn per cycle         
+     2,015,164,847      branches:u                # 1186.806 M/sec                  
+         3,038,522      branch-misses:u           #    0.15% of all branches        
+
+       0.940095058 seconds time elapsed
+
+       1.382203000 seconds user
+       0.331455000 seconds sys
+
+
+
+MPI processes: 16
+------------------
+Total received entries across ranks = 3199985 (expected 3200000)
+Total FLOPs = 6399970  &  Performance = 3.669 GFLOP/s
+NNZ per rank: min=199995 avg=199999.1 max=200000
+Time per SpMV: 0.001745 s (7.3%)
+Communication time: 0.022233 s (92.7%)
+  +- Ghost exchange: 0.019902 s (83.0%)
+  +- Result gather: 0.002332 s (9.7%)
+
+ Performance counter stats for 'mpirun -np 16 ./src/spmv_mpi_parallelIO ./matrices/randomN320k.mtx':
+
+          5,294.85 msec task-clock:u              #    4.480 CPUs utilized          
+                 0      context-switches:u        #    0.000 K/sec                  
+                 0      cpu-migrations:u          #    0.000 K/sec                  
+            46,619      page-faults:u             #    0.009 M/sec                  
+    12,284,415,906      cycles:u                  #    2.320 GHz                    
+    32,621,887,189      instructions:u            #    2.66  insn per cycle         
+     7,273,376,723      branches:u                # 1373.669 M/sec                  
+        19,936,505      branch-misses:u           #    0.27% of all branches        
+
+       1.181882030 seconds time elapsed
+
+       4.323010000 seconds user
+       0.992825000 seconds sys
+
+
+
+MPI processes: 32
+------------------
+Total received entries across ranks = 6399971 (expected 6400000)
+Total FLOPs = 12799942  &  Performance = 8.295 GFLOP/s
+NNZ per rank: min=199998 avg=199999.1 max=200000
+Time per SpMV: 0.001543 s (2.0%)
+Communication time: 0.075714 s (98.0%)
+  +- Ghost exchange: 0.071605 s (92.7%)
+  +- Result gather: 0.004109 s (5.3%)
+
+ Performance counter stats for 'mpirun -np 32 ./src/spmv_mpi_parallelIO ./matrices/randomN640k.mtx':
+
+         15,379.17 msec task-clock:u              #   10.234 CPUs utilized          
+                 0      context-switches:u        #    0.000 K/sec                  
+                 0      cpu-migrations:u          #    0.000 K/sec                  
+            90,382      page-faults:u             #    0.006 M/sec                  
+    36,195,415,471      cycles:u                  #    2.354 GHz                    
+    93,470,169,432      instructions:u            #    2.58  insn per cycle         
+    22,138,060,990      branches:u                # 1439.483 M/sec                  
+        84,454,894      branch-misses:u           #    0.38% of all branches        
+
+       1.502716754 seconds time elapsed
+
+      12.259108000 seconds user
+       3.145559000 seconds sys
+
+
+
+MPI processes: 64
+------------------
+Total received entries across ranks = 12799939 (expected 12800000)
+Total FLOPs = 25599878  &  Performance = 6.825 GFLOP/s
+NNZ per rank: min=199997 avg=199999.0 max=200000
+Time per SpMV: 0.003751 s (1.3%)
+Communication time: 0.292820 s (98.7%)
+  +- Ghost exchange: 0.283186 s (95.5%)
+  +- Result gather: 0.009634 s (3.2%)
+
+ Performance counter stats for 'mpirun -np 64 ./src/spmv_mpi_parallelIO ./matrices/random1M280k.mtx':
+
+         52,618.78 msec task-clock:u              #   23.846 CPUs utilized          
+                 0      context-switches:u        #    0.000 K/sec                  
+                 0      cpu-migrations:u          #    0.000 K/sec                  
+           203,450      page-faults:u             #    0.004 M/sec                  
+   115,866,745,247      cycles:u                  #    2.202 GHz                    
+   306,027,904,290      instructions:u            #    2.64  insn per cycle         
+    76,513,463,601      branches:u                # 1454.109 M/sec                  
+       203,363,429      branch-misses:u           #    0.27% of all branches        
+
+       2.206567034 seconds time elapsed
+
+      39.305548000 seconds user
+      13.344116000 seconds sys
+
+
+MPI processes: 128
+------------------
+Total received entries across ranks = 25599879 (expected 25600000)
+Total FLOPs = 51199758  &  Performance = 10.908 GFLOP/s
+NNZ per rank: min=199997 avg=199999.1 max=200000
+Time per SpMV: 0.004694 s (0.4%)
+Communication time: 1.130779 s (99.6%)
+  +- Ghost exchange: 1.112809 s (98.0%)
+  +- Result gather: 0.017970 s (1.6%)
+
+ Performance counter stats for 'mpirun -np 128 ./src/spmv_mpi_parallelIO ./matrices/random2M560k.mtx':
+
+        253,317.28 msec task-clock:u              #   53.559 CPUs utilized          
+                 0      context-switches:u        #    0.000 K/sec                  
+                 0      cpu-migrations:u          #    0.000 K/sec                  
+           470,148      page-faults:u             #    0.002 M/sec                  
+   466,114,048,689      cycles:u                  #    1.840 GHz                    
+ 1,262,346,892,107      instructions:u            #    2.71  insn per cycle         
+   328,621,353,691      branches:u                # 1297.272 M/sec                  
+       583,674,568      branch-misses:u           #    0.18% of all branches        
+
+       4.729674187 seconds time elapsed
+
+     168.404096000 seconds user
+      84.992950000 seconds sys
+
+

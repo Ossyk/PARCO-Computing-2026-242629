@@ -1,0 +1,151 @@
+webbasematrix: big (1M×1M, ~3.11M nnz), unstructured (web graph)
+
+Nb of processes : 1
+Total received entries across ranks = 3105536 (expected 3105536)
+Total FLOPs = 6211072  &  Performance = 0.250 GFLOP/s
+NNZ per rank: min=3105536 avg=3105536.0 max=3105536
+Time per SpMV: 0.024884 s (67.2%)
+Communication time: 0.012153 s (32.8%)
+  +- Ghost exchange: 0.005882 s (15.9%)
+  +- Result gather: 0.006271 s (16.9%)
+
+Nb of processes : 2
+Total received entries across ranks = 3105535 (expected 3105536)
+Total FLOPs = 6211070  &  Performance = 0.489 GFLOP/s
+NNZ per rank: min=1540872 avg=1552767.5 max=1564663
+Time per SpMV: 0.012711 s (42.0%)
+Communication time: 0.017569 s (58.0%)
+  +- Ghost exchange: 0.009456 s (31.2%)
+  +- Result gather: 0.008113 s (26.8%)
+
+Nb of processes : 4
+Total received entries across ranks = 3105533 (expected 3105536)
+Total FLOPs = 6211066  &  Performance = 0.751 GFLOP/s
+NNZ per rank: min=764903 avg=776383.2 max=782681
+Time per SpMV: 0.008265 s (26.6%)
+Communication time: 0.022814 s (73.4%)
+  +- Ghost exchange: 0.014962 s (48.1%)
+  +- Result gather: 0.007851 s (25.3%)
+
+Nb of processes : 8
+Total received entries across ranks = 3105530 (expected 3105536)
+Total FLOPs = 6211060  &  Performance = 0.759 GFLOP/s
+NNZ per rank: min=377397 avg=388191.2 max=393896
+Time per SpMV: 0.008178 s (17.8%)
+Communication time: 0.037703 s (82.2%)
+  +- Ghost exchange: 0.030487 s (66.4%)
+  +- Result gather: 0.007215 s (15.7%)
+
+Nb of processes : 16
+Total received entries across ranks = 3105523 (expected 3105536)
+Total FLOPs = 6211046  &  Performance = 0.682 GFLOP/s
+NNZ per rank: min=184051 avg=194095.2 max=200899
+Time per SpMV: 0.009106 s (11.9%)
+Communication time: 0.067151 s (88.1%)
+  +- Ghost exchange: 0.059081 s (77.5%)
+  +- Result gather: 0.008070 s (10.6%)
+
+Nb of processes : 32
+Total received entries across ranks = 3105508 (expected 3105536)
+Total FLOPs = 6211016  &  Performance = 0.926 GFLOP/s
+NNZ per rank: min=91344 avg=97047.1 max=103327
+Time per SpMV: 0.006704 s (5.2%)
+Communication time: 0.123241 s (94.8%)
+  +- Ghost exchange: 0.114608 s (88.2%)
+  +- Result gather: 0.008633 s (6.6%)
+
+Nb of processes : 64
+Total received entries across ranks = 3105476 (expected 3105536)
+Total FLOPs = 6210952  &  Performance = 1.655 GFLOP/s
+NNZ per rank: min=43806 avg=48523.1 max=54170
+Time per SpMV: 0.003753 s (1.6%)
+Communication time: 0.226884 s (98.4%)
+  +- Ghost exchange: 0.216788 s (94.0%)
+  +- Result gather: 0.010096 s (4.4%)
+
+Nb of processes : 128
+Total received entries across ranks = 3105415 (expected 3105536)
+Total FLOPs = 6210830  &  Performance = 3.924 GFLOP/s
+NNZ per rank: min=21211 avg=24261.1 max=29738
+Time per SpMV: 0.001583 s (0.4%)
+Communication time: 0.445638 s (99.6%)
+  +- Ghost exchange: 0.436154 s (97.5%)
+  +- Result gather: 0.009484 s (2.1%)
+
+
+*****************************
+
+bcsstk18.mtx matrix: medium (11k×11k, 400k nnz) semi-structured (FEM-like)
+
+
+Nb of processes : 1
+Total received entries across ranks = 80519 (expected 80519)
+Total FLOPs = 161038  &  Performance = 0.331 GFLOP/s
+NNZ per rank: min=80519 avg=80519.0 max=80519
+Time per SpMV: 0.000487 s (74.6%)
+Communication time: 0.000166 s (25.4%)
+  +- Ghost exchange: 0.000084 s (12.8%)
+  +- Result gather: 0.000082 s (12.6%)
+
+Nb of processes : 2
+Total received entries across ranks = 80518 (expected 80519)
+Total FLOPs = 161036  &  Performance = 0.402 GFLOP/s
+NNZ per rank: min=40222 avg=40259.0 max=40296
+Time per SpMV: 0.000401 s (36.3%)
+Communication time: 0.000703 s (63.7%)
+  +- Ghost exchange: 0.000268 s (24.2%)
+  +- Result gather: 0.000436 s (39.5%)
+
+Nb of processes : 4
+Total received entries across ranks = 80516 (expected 80519)
+Total FLOPs = 161032  &  Performance = 0.532 GFLOP/s
+NNZ per rank: min=20057 avg=20129.0 max=20222
+Time per SpMV: 0.000303 s (36.5%)
+Communication time: 0.000526 s (63.5%)
+  +- Ghost exchange: 0.000314 s (37.9%)
+  +- Result gather: 0.000212 s (25.6%)
+
+Nb of processes : 8
+Total received entries across ranks = 80514 (expected 80519)
+Total FLOPs = 161028  &  Performance = 0.836 GFLOP/s
+NNZ per rank: min=9909 avg=10064.2 max=10153
+Time per SpMV: 0.000193 s (22.6%)
+Communication time: 0.000659 s (77.4%)
+  +- Ghost exchange: 0.000299 s (35.1%)
+  +- Result gather: 0.000360 s (42.3%)
+
+Nb of processes : 16
+Total received entries across ranks = 80506 (expected 80519)
+Total FLOPs = 161012  &  Performance = 1.000 GFLOP/s
+NNZ per rank: min=4802 avg=5031.6 max=5205
+Time per SpMV: 0.000161 s (18.1%)
+Communication time: 0.000728 s (81.9%)
+  +- Ghost exchange: 0.000401 s (45.1%)
+  +- Result gather: 0.000328 s (36.8%)
+
+Nb of processes : 32
+Total received entries across ranks = 80489 (expected 80519)
+Total FLOPs = 160978  &  Performance = 0.922 GFLOP/s
+NNZ per rank: min=2307 avg=2515.3 max=2645
+Time per SpMV: 0.000175 s (14.4%)
+Communication time: 0.001036 s (85.6%)
+  +- Ghost exchange: 0.000584 s (48.2%)
+  +- Result gather: 0.000452 s (37.3%)
+
+Nb of processes : 64
+Total received entries across ranks = 80457 (expected 80519)
+Total FLOPs = 160914  &  Performance = 0.732 GFLOP/s
+NNZ per rank: min=1138 avg=1257.1 max=1359
+Time per SpMV: 0.000220 s (10.8%)
+Communication time: 0.001813 s (89.2%)
+  +- Ghost exchange: 0.001041 s (51.2%)
+  +- Result gather: 0.000772 s (38.0%)
+
+Nb of processes : 128
+Total received entries across ranks = 80395 (expected 80519)
+Total FLOPs = 160790  &  Performance = 1.090 GFLOP/s
+NNZ per rank: min=520 avg=628.1 max=741
+Time per SpMV: 0.000148 s (3.8%)
+Communication time: 0.003694 s (96.2%)
+  +- Ghost exchange: 0.002422 s (63.0%)
+  +- Result gather: 0.001272 s (33.1%)
