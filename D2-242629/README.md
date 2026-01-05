@@ -53,8 +53,7 @@ This script generates all required large synthetic matrices in the matrices/
 directory.
 
 Note: This setup step must be executed only once.
-PBS job scripts assume that all required matrices already exist and do not
-perform compilation or matrix generation.
+PBS job scripts assume that all required matrices already exist.
 
 ---
 ### Compilation 
@@ -70,7 +69,7 @@ For detailed debug, add the `--debug` flag
 ```bash
 gcc -fopenmp src/spmv_parallel_openMP.c -o spmv_omp
 ```
-
+---
 
 ### Running the Code
 
@@ -110,4 +109,42 @@ src/spmv_parallel_openMP 32 static 1 matrices/webbase-1M.mtx
 ```
 - schedule ∈ {static, dynamic, guided, auto}
 - chunk = chunk size (use 0 for default scheduling)
+---
+### Provided Experiment Scripts
 
+| Script              | Description                                   | Execution Example |
+|---------------------|-----------------------------------------------|-------------------|
+| `omp_vs_mpi.sh`     | OpenMP vs MPI comparison on a single node     | `./omp_vs_mpi.sh matrices/webbase-1M.mtx` |
+| `strong_scaling.sh` | Strong scaling (1–128 MPI ranks)              | `./strong_scaling.sh matrices/webbase-1M.mtx` |
+| `weak_scaling.sh`   | Weak scaling with synthetic matrices          | `./weak_scaling.sh` |
+| `run_spmv_1d.sh`    | MPI 1D SpMV execution                         | `./run_spmv_1d.sh` |
+| `run_spmv_2d.sh`    | MPI 2D SpMV execution                         | `./run_spmv_2d.sh` |
+| `run_spmv_hybrid.sh`| Hybrid MPI + OpenMP execution                 | `./run_spmv_hybrid.sh` |
+
+---
+### PBS Execution (Cluster)
+PBS scripts are provided for reproducibility.
+```bash
+qsub run_spmv_1d.pbs
+qsub run_spmv_2d.pbs
+qsub run_spmv_hybrid.pbs
+```
+Each PBS script:
+- requests 2 nodes
+- allocates 64 cores per node
+- loads required modules
+- runs the corresponding experiment
+
+---
+### Metrics Reported
+For each configuration:
+- SpMV execution time (90th percentile of 15 runs)
+- Speedup and efficiency
+- GFLOP/s (2 × NNZ per SpMV)
+- Communication vs computation breakdown
+- Load balance (NNZ min/avg/max per rank)
+---
+###  Author
+**Oussema Kasraoui**  
+University of Trento – *Parallel Computing (I2PP_D1)*  
+Academic Year **2025 / 2026**
