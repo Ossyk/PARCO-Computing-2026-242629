@@ -59,9 +59,9 @@ PBS job scripts assume that all required matrices already exist.
 ### Compilation 
 #### MPI versions 
 ```bash
-mpicc -fopenmp  src/spmv_mpi.c -o src/spmv_mp
-mpicc -fopenmp src/spmv_mpi_parallelIO.c -o spmv_mpi
-mpicc -fopenmp src/spmv_mpi_2d_parallelIO.c -o spmv_mpi_2d
+mpicc -fopenmp  src/spmv_mpi.c -o src/spmv_mpi
+mpicc -fopenmp src/spmv_mpi_parallelIO.c -o spmv_mpi_paralleIO
+mpicc -fopenmp src/spmv_mpi_2d_parallelIO.c -o spmv_mpi_2d_parallelIO
 ```
 For detailed debug, add the `--debug` flag
 
@@ -148,4 +148,5 @@ For each configuration:
 **Oussema Kasraoui**  
 University of Trento – *Parallel Computing (I2PP_D1)*  
 Academic Year **2025 / 2026**
+
 
