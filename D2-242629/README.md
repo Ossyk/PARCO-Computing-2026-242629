@@ -163,8 +163,9 @@ For each configuration:
 ---
 ###  Author
 **Oussema Kasraoui**  
-University of Trento – *Parallel Computing (I2PP_D1)*  
+University of Trento – *Intro to Parallel Computing (I2PP_D2)*  
 Academic Year **2025 / 2026**
+
 
 
 
