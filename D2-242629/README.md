@@ -60,14 +60,14 @@ PBS job scripts assume that all required matrices already exist.
 #### MPI versions 
 ```bash
 mpicc -fopenmp  src/spmv_mpi.c -o src/spmv_mpi
-mpicc -fopenmp src/spmv_mpi_parallelIO.c -o spmv_mpi_paralleIO
-mpicc -fopenmp src/spmv_mpi_2d_parallelIO.c -o spmv_mpi_2d_parallelIO
+mpicc -fopenmp src/spmv_mpi_parallelIO.c -o src/spmv_mpi_paralleIO
+mpicc -fopenmp src/spmv_mpi_2d_parallelIO.c -o src/spmv_mpi_2d_parallelIO
 ```
 For detailed debug, add the `--debug` flag
 
 #### OpenMP version
 ```bash
-gcc -fopenmp src/spmv_parallel_openMP.c -o spmv_omp
+gcc -fopenmp src/spmv_parallel_openMP.c -o src/spmv_omp
 ```
 ---
 
@@ -78,18 +78,18 @@ gcc -fopenmp src/spmv_parallel_openMP.c -o spmv_omp
 Run the 1D cyclic row-wise MPI implementation:
 
 ```bash
-mpirun -np <P> ./spmv_mpi_io <matrix>
+mpirun -np <P> src/spmv_mpi_parallelIO <matrix>
 //Example:
-mpirun -np 8 ./spmv_mpi_io matrices/webbase-1M.mtx
+mpirun -np 8 src/spmv_mpi_parallelIO matrices/webbase-1M.mtx
 ```
 
 #### MPI 2D SpMV
 Run the 2D MPI implementation using Cartesian process grids:
 
 ```bash
-mpirun -np <P> ./spmv_mpi_2d <matrix>
+mpirun -np <P> src/spmv_mpi_2d_parallelIO <matrix>
 //Example:
-mpirun -np 16 ./spmv_mpi_2d matrices/Flan_1565.mtx
+mpirun -np 16 src/spmv_mpi_2d_parallelIO matrices/Flan_1565.mtx
 ```
 
 #### OpenMP SpMV (Single Node)
@@ -114,12 +114,12 @@ src/spmv_parallel_openMP 32 static 1 matrices/webbase-1M.mtx
 
 | Script              | Description                                   | Execution Example |
 |---------------------|-----------------------------------------------|-------------------|
-| `omp_vs_mpi.sh`     | OpenMP vs MPI comparison on a single node     | `./omp_vs_mpi.sh matrices/webbase-1M.mtx` |
-| `strong_scaling.sh` | Strong scaling (1–128 MPI ranks)              | `./strong_scaling.sh matrices/webbase-1M.mtx` |
-| `weak_scaling.sh`   | Weak scaling with synthetic matrices          | `./weak_scaling.sh` |
-| `run_spmv_1d.sh`    | MPI 1D SpMV execution                         | `./run_spmv_1d.sh` |
-| `run_spmv_2d.sh`    | MPI 2D SpMV execution                         | `./run_spmv_2d.sh` |
-| `run_spmv_hybrid.sh`| Hybrid MPI + OpenMP execution                 | `./run_spmv_hybrid.sh` |
+| `omp_vs_mpi.sh`     | OpenMP vs MPI comparison on a single node     | `scripts/omp_vs_mpi.sh matrices/webbase-1M.mtx` |
+| `strong_scaling.sh` | Strong scaling (1–128 MPI ranks)              | `scripts/strong_scaling.sh matrices/webbase-1M.mtx` |
+| `weak_scaling.sh`   | Weak scaling with synthetic matrices          | `scripts/weak_scaling.sh` |
+| `run_spmv_1d.sh`    | MPI 1D SpMV execution                         | `scripts/run_spmv_1d.sh` |
+| `run_spmv_2d.sh`    | MPI 2D SpMV execution                         | `scripts/run_spmv_2d.sh` |
+| `run_spmv_hybrid.sh`| Hybrid MPI + OpenMP execution                 | `scripts/run_spmv_hybrid.sh` |
 
 ---
 ### PBS Execution (Cluster)
@@ -148,5 +148,6 @@ For each configuration:
 **Oussema Kasraoui**  
 University of Trento – *Parallel Computing (I2PP_D1)*  
 Academic Year **2025 / 2026**
+
 
 
