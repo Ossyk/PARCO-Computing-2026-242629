@@ -2,7 +2,7 @@
 #PBS -N spmv_omp_vs_mpi
 #PBS -q short_cpuQ
 #PBS -l select=1:ncpus=64:mem=64gb
-#PBS -l walltime=00:30:00
+#PBS -l walltime=01:00:00
 #PBS -j oe
 
 cd $PBS_O_WORKDIR
@@ -31,7 +31,6 @@ echo "" >> $RESULTS
 
 
 # OpenMP runs
-
 
 echo "=== OpenMP (single node) ===" | tee -a $RESULTS
 
