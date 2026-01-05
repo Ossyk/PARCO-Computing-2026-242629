@@ -141,10 +141,10 @@ qsub -I -q short_cpuQ -l select=1:ncpus=64:mem=64gb,walltime=00:45:00
 ### PBS Execution (Cluster)
 PBS scripts are provided for reproducibility.
 ```bash
-qsub run_spmv_1d.pbs
-qsub run_spmv_2d.pbs
-qsub run_spmv_hybrid.pbs
-qsub run_spmv_omp_vs_mpi.pbs
+qsub run_spmv_1d.pbs  //strong and weak scaling using 1D SpMV
+qsub run_spmv_2d.pbs   //strong and weak scaling using 2D SpMV
+qsub run_spmv_hybrid.pbs   //Hybrid MPI+OpenMP strong scaling
+qsub run_spmv_omp_vs_mpi.pbs  //Hybrid MPI vs OpenMP Strong scaling
 ```
 Each PBS script:
 - requests 2 nodes (except for run_spmv_omp_vs_mpi.pbs)
@@ -165,6 +165,7 @@ For each configuration:
 **Oussema Kasraoui**  
 University of Trento – *Parallel Computing (I2PP_D1)*  
 Academic Year **2025 / 2026**
+
 
 
 
