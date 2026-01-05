@@ -14,9 +14,7 @@
 #endif
 
 
-/* ============================
-   Data structures
-   ============================ */
+// ==== Data structures
 
 typedef struct {
     int row;
@@ -32,16 +30,14 @@ typedef struct {
     double* values;
 } CSR;
 
-/* ============================
-   2D Grid utilities
-   ============================ */
+// ==== 2D Grid utilities
 
 typedef struct {
     MPI_Comm cart_comm;      // Cartesian communicator
     MPI_Comm row_comm;       // Row communicator
     MPI_Comm col_comm;       // Column communicator
     int dims[2];             // Grid dimensions [rows, cols]
-    int coords[2];           // This process's coordinates [row, col]
+    int coords[2];           // Process's coordinates [row, col]
     int proc_row;            // Row index in grid
     int proc_col;            // Column index in grid
 } Grid2D;
@@ -51,10 +47,10 @@ void setup_2d_grid(Grid2D* grid, int size, int rank) {
     grid->dims[0] = grid->dims[1] = 0;
     MPI_Dims_create(size, 2, grid->dims);
     
-    int periods[2] = {0, 0};  // Non-periodic
+    int periods[2] = {0, 0};  
     MPI_Cart_create(MPI_COMM_WORLD, 2, grid->dims, periods, 1, &grid->cart_comm);
     
-    // Get this process's coordinates
+    // Get process's coordinates
     MPI_Cart_coords(grid->cart_comm, rank, 2, grid->coords);
     grid->proc_row = grid->coords[0];
     grid->proc_col = grid->coords[1];
@@ -77,7 +73,7 @@ void free_2d_grid(Grid2D* grid) {
     MPI_Comm_free(&grid->cart_comm);
 }
 
-// 2D owner function: which process owns this block
+// distribute blocks between processes
 int owner_2d_block(int i, int j, const Grid2D* grid, int M, int N) {
     int Pr = grid->dims[0];
     int Pc = grid->dims[1];
@@ -114,9 +110,7 @@ void get_block_bounds(const Grid2D* grid, int M, int N,
 }
 
 
-/* =========================================
-    Transform from coo to csr
-   ========================================= */
+// ==== Transform from coo to csr
 void build_csr(const Entry* local_entries,
                      int local_nnz,
                      int r0, int r1,
@@ -135,7 +129,7 @@ void build_csr(const Entry* local_entries,
     csr_out->values = (double*)malloc((size_t)local_nnz * sizeof(double));
 
 
-    /* ---- count nnz per local row ---- */
+    
     int valid_nnz = 0;
 
     for (int k = 0; k < local_nnz; k++) {
@@ -149,12 +143,12 @@ void build_csr(const Entry* local_entries,
         }
     }
 
-    /* ---- prefix sum ---- */
+   
     for (int lr = 0; lr < local_rows; lr++) {
         csr_out->rowptr[lr + 1] += csr_out->rowptr[lr];
     }
 
-    /* ---- sanity check ---- */
+    
     if (debug) {
         if (csr_out->rowptr[local_rows] != valid_nnz) {
             printf("[Rank %d][WARN] CSR nnz mismatch: rowptr end=%d, valid_nnz=%d\n",
@@ -162,7 +156,7 @@ void build_csr(const Entry* local_entries,
         }
     }
 
-    /* ---- fill CSR ---- */
+    // fill CSR
     int* offset = (int*)calloc((size_t)local_rows, sizeof(int));
 
     for (int k = 0; k < local_nnz; k++) {
@@ -173,12 +167,12 @@ void build_csr(const Entry* local_entries,
             int lr  = gi - r0;
             int pos = csr_out->rowptr[lr] + offset[lr]++;
 
-            csr_out->colind[pos] = gj;              /* global column index */
+            csr_out->colind[pos] = gj;              
             csr_out->values[pos] = local_entries[k].val;
         }
     }
 
-    /* ---- final consistency check ---- */
+    
     if (debug) {
         for (int lr = 0; lr < local_rows; lr++) {
             int row_nnz = csr_out->rowptr[lr + 1] - csr_out->rowptr[lr];
@@ -196,9 +190,7 @@ void build_csr(const Entry* local_entries,
 
 
 
-/* ============================
-   Local SpMV kernel
-   ============================ */
+//====Local SpMV kernel
 
 void local_spmv(const CSR* A, const double* x, double* y) {
     #pragma omp parallel for schedule(runtime)
@@ -220,9 +212,7 @@ void flush_cache() {
     }
 }
 
-/* ============================
-   MAIN
-   ============================ */
+// MAIN
 
 int main(int argc, char** argv) {
     int debug = 0;
@@ -267,14 +257,12 @@ int main(int argc, char** argv) {
     Entry* local_entries = NULL;
     int local_nnz = 0;
     
-    /* ============================
-       STEP 1 — Parallel I/O Read
-       ============================ */
+    //===Parallel I/O Read
     
     MPI_File fh;
     MPI_File_open(MPI_COMM_WORLD, argv[1], MPI_MODE_RDONLY, MPI_INFO_NULL, &fh);
     
-    // Skip header lines (lines starting with '%')
+ 
     MPI_Offset header_end = 0;
     if (rank == 0) {
         char line[256];
@@ -296,10 +284,7 @@ int main(int argc, char** argv) {
     MPI_Bcast(&NNZ, 1, MPI_INT, 0, MPI_COMM_WORLD);
     MPI_Bcast(&header_end, 1, MPI_OFFSET, 0, MPI_COMM_WORLD);
     
-    /* ============================
-   (E) CHANGED: in MAIN, after you Bcast(M,N,NNZ,header_end)
-       compute local block bounds
-   ============================ */
+    // compute the bounds
     int r0, r1, c0, c1, br, bc;
     get_block_bounds(&grid, M, N, &r0, &r1, &c0, &c1, &br, &bc);
     
@@ -312,12 +297,12 @@ int main(int argc, char** argv) {
     }
     
     
-    // Get total file size
+    
     MPI_Offset file_size;
     MPI_File_get_size(fh, &file_size);
     MPI_Offset data_size = file_size - header_end;
     
-    // Each rank reads roughly equal bytes with overlap for line boundaries
+    // Each rank reads its part of the file
     MPI_Offset chunk_bytes = data_size / size;
     MPI_Offset my_start = header_end + rank * chunk_bytes;
     MPI_Offset my_end = (rank == size - 1) ? file_size : (header_end + (rank + 1) * chunk_bytes);
@@ -379,7 +364,7 @@ int main(int argc, char** argv) {
         if (sscanf(line_ptr, "%d %d %lf", &i, &j, &v) == 3) {
             i--; j--;  // Convert to 0-indexed
             
-            // Use 2D owner function
+           
             int p = owner_2d_block(i, j, &grid, M, N);
 
             
@@ -443,9 +428,7 @@ int main(int argc, char** argv) {
     free(send_counts); free(recv_counts);
     free(send_displs); free(recv_displs);
     
-    /* ============================
-       STEP 2 — COO ? CSR
-       ============================ */
+    // transforming COO to CSR
        
     CSR csr;
 
@@ -461,9 +444,7 @@ int main(int argc, char** argv) {
                rank, grid.proc_row, grid.proc_col, csr.nrows, csr.nnz);
     }
     
-   /* ============================
-   STEP 3 — 2D SUMMA SpMV (timed)
-   ============================ */
+  //==== 2D SUMMA SpMV
 
     double* local_x = malloc(local_cols * sizeof(double));
     for (int i = 0; i < local_cols; i++)
@@ -489,7 +470,7 @@ int main(int argc, char** argv) {
         MPI_Barrier(MPI_COMM_WORLD);
         double t0 = MPI_Wtime();
     
-        /* ---- SUMMA ---- */
+        // SUMMA
         for (int pc = 0; pc < grid.dims[1]; pc++) {
 
             int root = pc;
@@ -536,7 +517,7 @@ int main(int argc, char** argv) {
         times[it] = t1 - t0;
     }
     
-    /* ---- 90th percentile ---- */
+    // ---- 90th percentile ----
     for (int i = 0; i < iters - 1; i++)
         for (int j = i + 1; j < iters; j++)
             if (times[j] < times[i]) {
@@ -555,7 +536,7 @@ int main(int argc, char** argv) {
     MPI_Reduce(&local_compute_time, &compute_time, 1, MPI_DOUBLE, MPI_MAX, 0, MPI_COMM_WORLD);
 
     
-    /* FLOPs */
+    // FLOPs
     long long local_flops = 2LL * csr.nnz;
     long long total_flops;
     MPI_Reduce(&local_flops, &total_flops, 1, MPI_LONG_LONG, MPI_SUM, 0, MPI_COMM_WORLD);
@@ -579,9 +560,7 @@ int main(int argc, char** argv) {
                min_nnz, (double)sum_nnz/size, max_nnz);
     }
 
-  /* ============================
-   STEP 5 — Gather y (validation)
-   ============================ */
+  // Gather y 
 
     int* y_counts = NULL;
     int* y_displs = NULL;
@@ -663,10 +642,7 @@ int main(int argc, char** argv) {
 
 
 
-    /* ============================
-       Cleanup
-       ============================ */
-
+    //====Cleanup
 
     free(csr.rowptr);
     free(csr.colind);

@@ -15,9 +15,7 @@
 
 
 
-/* ============================
-   Data structures
-   ============================ */
+// ==== Data structures
 
 typedef struct {
     int row;
@@ -36,9 +34,7 @@ typedef struct {
 #define MAX_LINE 512
 
 
-/* ============================
-   Utilities
-   ============================ */
+// ==== Utilities
 
 int owner(int idx, int size) {
     return idx % size;
@@ -53,13 +49,13 @@ int compute_local_nrows(int global_nrows, int rank, int size) {
 
 
 
-/* ============================
-   STEP 4 — Local SpMV kernel
-   ============================ */
+/// ==== Local SpMV kernel
 
 void local_spmv(const CSR* A, const double* x, double* y) {
 
-    /* MPI+OpenMP ready: just add pragma if desired */
+     //pragma added for when needed, in default the threads number is 1.
+    //and when we will explore the hybrid omp+mpi num_th will be set using export num_threads <T>
+    
     #pragma omp parallel for schedule(runtime)
     for (int r = 0; r < A->nrows; r++) {
         double sum = 0.0;
@@ -82,9 +78,7 @@ void flush_cache() {
 }
 
 
-/* ============================
-   MAIN
-   ============================ */
+// ==== MAIN
 
 int main(int argc, char** argv) {
 
@@ -124,21 +118,19 @@ int M = 0, N = 0, NNZ = 0;
     Entry* local_entries = NULL;
     int local_nnz = 0;
     
-    /* ============================
-       STEP 1 — Parallel I/O Read
-       ============================ */
+    // Parallel I/O Read
     
     MPI_File fh;
     MPI_File_open(MPI_COMM_WORLD, argv[1], MPI_MODE_RDONLY, MPI_INFO_NULL, &fh);
     
-    // Skip header lines (lines starting with '%')
+    // Skip header lines 
     MPI_Offset header_end = 0;
     if (rank == 0) {
         char line[256];
         FILE* f = fopen(argv[1], "r");
         if (!f) MPI_Abort(MPI_COMM_WORLD, 1);
         
-        // Skip comment lines
+        
         do {
             header_end = ftell(f);
             fgets(line, sizeof(line), f);
@@ -146,7 +138,7 @@ int M = 0, N = 0, NNZ = 0;
         
         // Read dimensions from first non-comment line
         sscanf(line, "%d %d %d", &M, &N, &NNZ);
-        header_end = ftell(f);  // Position after dimension line
+        header_end = ftell(f);  
         fclose(f);
     }
     
@@ -156,7 +148,7 @@ int M = 0, N = 0, NNZ = 0;
     MPI_Bcast(&NNZ, 1, MPI_INT, 0, MPI_COMM_WORLD);
     MPI_Bcast(&header_end, 1, MPI_OFFSET, 0, MPI_COMM_WORLD);
     
-    // Get total file size
+ 
     MPI_Offset file_size;
     MPI_File_get_size(fh, &file_size);
     MPI_Offset data_size = file_size - header_end;
@@ -181,7 +173,6 @@ int M = 0, N = 0, NNZ = 0;
     // Find first complete line (skip partial line at start, except rank 0)
     char* parse_start = buffer;
     if (rank > 0) {
-        // Skip to first newline, then start from next line
         char* first_newline = strchr(buffer, '\n');
         if (first_newline) {
             parse_start = first_newline + 1;
@@ -191,7 +182,6 @@ int M = 0, N = 0, NNZ = 0;
     // Find last complete line (don't process partial line at end, except last rank)
     char* parse_end = buffer + my_size;
     if (rank < size - 1) {
-        // Find last newline
         char* last_newline = parse_end;
         while (last_newline > parse_start && *last_newline != '\n') {
             last_newline--;
@@ -201,12 +191,10 @@ int M = 0, N = 0, NNZ = 0;
         }
     }
     
-    // Null-terminate at parse_end
     char saved_char = *parse_end;
     *parse_end = '\0';
     
     // Parse the buffer and distribute entries by row owner
-    // Use more conservative memory allocation
     int max_entries_per_rank = (NNZ / size) * 2;  // 2x average for safety
     
     int* counts = calloc(size, sizeof(int));
@@ -214,7 +202,6 @@ int M = 0, N = 0, NNZ = 0;
     for (int p = 0; p < size; p++)
         buffers[p] = malloc(max_entries_per_rank * sizeof(Entry));
     
-    // Parse lines from buffer
     char* line_ptr = parse_start;
     int parsed = 0;
     
@@ -222,11 +209,11 @@ int M = 0, N = 0, NNZ = 0;
     MPI_Offset first_line_pos = my_start + (parse_start - buffer);
     
     while (line_ptr < parse_end) {
-        // Find end of line
+    
         char* line_end = strchr(line_ptr, '\n');
         if (!line_end) break;
         
-        *line_end = '\0';  // Temporarily terminate
+        *line_end = '\0';  
         
         int i, j; 
         double v;
@@ -245,10 +232,10 @@ int M = 0, N = 0, NNZ = 0;
         line_ptr = line_end + 1;
     }
     
-    *parse_end = saved_char;  // Restore
+    *parse_end = saved_char;  
     free(buffer);
     
-    // All-to-all exchange: redistribute entries by row ownership
+    // All-to-all exchange
     int* send_counts = calloc(size, sizeof(int));
     int* recv_counts = calloc(size, sizeof(int));
     int* send_displs = calloc(size, sizeof(int));
@@ -258,7 +245,7 @@ int M = 0, N = 0, NNZ = 0;
     
     MPI_Alltoall(send_counts, 1, MPI_INT, recv_counts, 1, MPI_INT, MPI_COMM_WORLD);
     
-    // displacements in *elements*
+    // displacements in **elements**
     for (int p = 1; p < size; p++) {
         send_displs[p] = send_displs[p-1] + send_counts[p-1];
         recv_displs[p] = recv_displs[p-1] + recv_counts[p-1];
@@ -274,7 +261,7 @@ int M = 0, N = 0, NNZ = 0;
     
     local_entries = malloc(total_recv * sizeof(Entry));
     
-    // datatype trick (so counts/displs are in entries, not bytes)
+    // change datatype (so counts/displs are in entries, not bytes)
     MPI_Datatype MPI_ENTRY;
     MPI_Type_contiguous(sizeof(Entry), MPI_BYTE, &MPI_ENTRY);
     MPI_Type_commit(&MPI_ENTRY);
@@ -303,9 +290,7 @@ int M = 0, N = 0, NNZ = 0;
     free(send_counts); free(recv_counts);
     free(send_displs); free(recv_displs);
        
-    /* ============================
-       STEP 2 — COO ? CSR
-       ============================ */
+    // ==== COO =>CSR
 
     CSR csr;
     csr.nnz = local_nnz;
@@ -339,9 +324,7 @@ int M = 0, N = 0, NNZ = 0;
     printf("Rank %d owns %d rows and %d nonzeros\n",rank, csr.nrows, csr.nnz);
     }
     
-    /* ============================
-       STEP 3 — Ghost exchange
-       ============================ */
+    // ====  Ghost exchange
 
     /* Build local vector x (owned entries only) */
     int local_vec_n = compute_local_nrows(N, rank, size);
@@ -387,12 +370,10 @@ int M = 0, N = 0, NNZ = 0;
 
 
     /* Now global_x[j] is available ? ghost elements resolved */
-if (debug) {
-    printf("Rank %d completed ghost exchange\n", rank);
-    }
-        /* ============================
-       STEP 4 — Local y_i computation
-       ============================ */
+    if (debug) {
+        printf("Rank %d completed ghost exchange\n", rank);
+        }
+    //==== — Local y_i computation
     
        
     double* local_y = malloc(csr.nrows * sizeof(double));
@@ -416,7 +397,7 @@ if (debug) {
       times[t]=t_comp_end - t_comp_start;
     }
     
-    /* Compute 90th percentile */
+    // Compute 90th percentile 
     for (int i = 0; i < iters - 1; i++) {
         for (int j = i + 1; j < iters; j++) {
             if (times[j] < times[i]) {
@@ -438,7 +419,7 @@ if (debug) {
     long long local_flops = 2LL * csr.nnz;
     long long total_flops;
     MPI_Reduce(&local_flops, &total_flops,1, MPI_LONG_LONG, MPI_SUM,0, MPI_COMM_WORLD);
-    ////// print flops and gflops
+    //=== print flops and gflops
     if (rank == 0) {
       double gflops = (double)total_flops / comp_time / 1e9;
       printf(COLOR_GREEN "Total FLOPs = %lld  &  " COLOR_RESET, total_flops);
@@ -446,7 +427,7 @@ if (debug) {
     }
 
 
-    ////// balance metrics
+    ////=== balance metrics
     int min_nnz, max_nnz, sum_nnz;
     
     MPI_Reduce(&local_nnz, &min_nnz, 1, MPI_INT, MPI_MIN, 0, MPI_COMM_WORLD);
@@ -502,7 +483,7 @@ if (debug) {
     }
     }
     
-    //printing times results
+    //====printing times results
     
     if (rank == 0) {
     double total_time = ghost_time + comp_time + gather_time;
@@ -522,9 +503,7 @@ if (debug) {
     }
 
 
-    /* ============================
-       Cleanup
-       ============================ */
+  // ====  Cleanup
 
     free(local_x);
     free(global_x);

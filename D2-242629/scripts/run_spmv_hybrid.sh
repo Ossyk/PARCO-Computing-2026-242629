@@ -1,8 +1,6 @@
 #!/bin/bash
 
 
-# Compile (not timed)
-mpicc -O3 -fopenmp ./src/spmv_mpi_parallelIO.c -o ./src/spmv_mpi_parallelIO
 
 EXEC=./src/spmv_mpi_parallelIO
 MATDIR=./matrices
@@ -11,12 +9,13 @@ export OMP_PROC_BIND=close
 export OMP_PLACES=cores
 
 configs=(
-  "128 1"
-  "64 2"
-  "32 4"
-  "16 8"
   "8 16"
+  "16 8"
+  "32 4"
+  "64 2"
+  "128 1"
 )
+
 echo "********************************"
 echo "Hybrid MPI+OpenMP Strong scaling"
 echo "********************************"

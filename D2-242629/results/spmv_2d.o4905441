@@ -1,0 +1,341 @@
+***********************************
+         STRONG SCALING — 2D
+***********************************
+
+Matrix: ./matrices/webbase-1M.mtx
+--------------------------------------
+MPI processes: 1
+2D Process grid: 1 x 1
+Total received entries across ranks = 3105536 (expected 3105536)
+Total FLOPs = 6211072 & Performance = 0.174 GFLOP/s
+NNZ per rank: min=3105536 avg=3105536.0 max=3105536
+2D SUMMA timing breakdown (per iteration avg):
+  Computation:  0.026083 s (92.1%)
+  Row Bcast:    0.000001 s (0.0%)
+  Col Reduce:   0.002239 s (7.9%)
+
+MPI processes: 2
+2D Process grid: 2 x 1
+Total received entries across ranks = 3105535 (expected 3105536)
+Total FLOPs = 6211070 & Performance = 0.342 GFLOP/s
+NNZ per rank: min=1441749 avg=1552767.5 max=1663786
+2D SUMMA timing breakdown (per iteration avg):
+  Computation:  0.014490 s (93.1%)
+  Row Bcast:    0.000002 s (0.0%)
+  Col Reduce:   0.001066 s (6.8%)
+
+MPI processes: 4
+2D Process grid: 2 x 2
+Total received entries across ranks = 3105533 (expected 3105536)
+Total FLOPs = 6211066 & Performance = 0.165 GFLOP/s
+NNZ per rank: min=25547 avg=776383.2 max=1638238
+2D SUMMA timing breakdown (per iteration avg):
+  Computation:  0.020207 s (36.5%)
+  Row Bcast:    0.018833 s (34.0%)
+  Col Reduce:   0.016329 s (29.5%)
+
+MPI processes: 8
+2D Process grid: 4 x 2
+Total received entries across ranks = 3105530 (expected 3105536)
+Total FLOPs = 6211060 & Performance = 0.148 GFLOP/s
+NNZ per rank: min=1536 avg=388191.2 max=1049503
+2D SUMMA timing breakdown (per iteration avg):
+  Computation:  0.014810 s (27.1%)
+  Row Bcast:    0.026665 s (48.8%)
+  Col Reduce:   0.013139 s (24.1%)
+
+MPI processes: 16
+2D Process grid: 4 x 4
+Total received entries across ranks = 3105523 (expected 3105536)
+Total FLOPs = 6211046 & Performance = 0.144 GFLOP/s
+NNZ per rank: min=140 avg=194095.2 max=990185
+2D SUMMA timing breakdown (per iteration avg):
+  Computation:  0.020751 s (33.0%)
+  Row Bcast:    0.029077 s (46.2%)
+  Col Reduce:   0.013131 s (20.9%)
+
+MPI processes: 32
+2D Process grid: 8 x 4
+Total received entries across ranks = 3105508 (expected 3105536)
+Total FLOPs = 6211016 & Performance = 0.123 GFLOP/s
+NNZ per rank: min=53 avg=97047.1 max=695148
+2D SUMMA timing breakdown (per iteration avg):
+  Computation:  0.012702 s (19.5%)
+  Row Bcast:    0.042648 s (65.5%)
+  Col Reduce:   0.009776 s (15.0%)
+
+MPI processes: 64
+2D Process grid: 8 x 8
+Total received entries across ranks = 3105476 (expected 3105536)
+Total FLOPs = 6210952 & Performance = 0.028 GFLOP/s
+NNZ per rank: min=12 avg=48523.1 max=552282
+2D SUMMA timing breakdown (per iteration avg):
+  Computation:  0.020007 s (7.7%)
+  Row Bcast:    0.208139 s (80.2%)
+  Col Reduce:   0.031280 s (12.1%)
+
+MPI processes: 128
+2D Process grid: 16 x 8
+Total received entries across ranks = 3105415 (expected 3105536)
+Total FLOPs = 6210830 & Performance = 0.014 GFLOP/s
+NNZ per rank: min=0 avg=24261.1 max=375111
+2D SUMMA timing breakdown (per iteration avg):
+  Computation:  0.015467 s (3.1%)
+  Row Bcast:    0.418725 s (84.2%)
+  Col Reduce:   0.062976 s (12.7%)
+
+
+Matrix: ./matrices/Flan_1565.mtx
+--------------------------------------
+MPI processes: 1
+2D Process grid: 1 x 1
+Total received entries across ranks = 59485419 (expected 59485419)
+Total FLOPs = 118970838 & Performance = 0.347 GFLOP/s
+NNZ per rank: min=59485419 avg=59485419.0 max=59485419
+2D SUMMA timing breakdown (per iteration avg):
+  Computation:  0.319808 s (98.9%)
+  Row Bcast:    0.000003 s (0.0%)
+  Col Reduce:   0.003510 s (1.1%)
+
+MPI processes: 2
+2D Process grid: 2 x 1
+Total received entries across ranks = 59485418 (expected 59485419)
+Total FLOPs = 118970836 & Performance = 0.477 GFLOP/s
+NNZ per rank: min=29553912 avg=29742709.0 max=29931506
+2D SUMMA timing breakdown (per iteration avg):
+  Computation:  0.179203 s (99.0%)
+  Row Bcast:    0.000004 s (0.0%)
+  Col Reduce:   0.001741 s (1.0%)
+
+MPI processes: 4
+2D Process grid: 2 x 2
+Total received entries across ranks = 59485416 (expected 59485419)
+Total FLOPs = 118970832 & Performance = 0.358 GFLOP/s
+NNZ per rank: min=0 avg=14871354.0 max=29553911
+2D SUMMA timing breakdown (per iteration avg):
+  Computation:  0.281979 s (43.5%)
+  Row Bcast:    0.180040 s (27.8%)
+  Col Reduce:   0.186426 s (28.7%)
+
+MPI processes: 8
+2D Process grid: 4 x 2
+Total received entries across ranks = 59485413 (expected 59485419)
+Total FLOPs = 118970826 & Performance = 0.592 GFLOP/s
+NNZ per rank: min=0 avg=7435676.6 max=15063799
+2D SUMMA timing breakdown (per iteration avg):
+  Computation:  0.142457 s (42.0%)
+  Row Bcast:    0.105110 s (31.0%)
+  Col Reduce:   0.091292 s (26.9%)
+
+MPI processes: 16
+2D Process grid: 4 x 4
+Total received entries across ranks = 59485404 (expected 59485419)
+Total FLOPs = 118970808 & Performance = 0.456 GFLOP/s
+NNZ per rank: min=0 avg=3717837.8 max=14725809
+2D SUMMA timing breakdown (per iteration avg):
+  Computation:  0.223206 s (40.8%)
+  Row Bcast:    0.194484 s (35.6%)
+  Col Reduce:   0.128823 s (23.6%)
+
+MPI processes: 32
+2D Process grid: 8 x 4
+Total received entries across ranks = 59485389 (expected 59485419)
+Total FLOPs = 118970778 & Performance = 0.748 GFLOP/s
+NNZ per rank: min=0 avg=1858918.4 max=7554572
+2D SUMMA timing breakdown (per iteration avg):
+  Computation:  0.115413 s (37.9%)
+  Row Bcast:    0.123645 s (40.6%)
+  Col Reduce:   0.065138 s (21.4%)
+
+MPI processes: 64
+2D Process grid: 8 x 8
+Total received entries across ranks = 59485360 (expected 59485419)
+Total FLOPs = 118970720 & Performance = 0.281 GFLOP/s
+NNZ per rank: min=0 avg=929458.8 max=7402195
+2D SUMMA timing breakdown (per iteration avg):
+  Computation:  0.222464 s (35.4%)
+  Row Bcast:    0.356136 s (56.6%)
+  Col Reduce:   0.050486 s (8.0%)
+
+MPI processes: 128
+2D Process grid: 16 x 8
+Total received entries across ranks = 59485305 (expected 59485419)
+Total FLOPs = 118970610 & Performance = 0.165 GFLOP/s
+NNZ per rank: min=0 avg=464728.9 max=3777599
+2D SUMMA timing breakdown (per iteration avg):
+  Computation:  0.139486 s (16.3%)
+  Row Bcast:    0.673516 s (78.8%)
+  Col Reduce:   0.041656 s (4.9%)
+
+
+Matrix: ./matrices/bcsstk18.mtx
+--------------------------------------
+MPI processes: 1
+2D Process grid: 1 x 1
+Total received entries across ranks = 80519 (expected 80519)
+Total FLOPs = 161038 & Performance = 0.297 GFLOP/s
+NNZ per rank: min=80519 avg=80519.0 max=80519
+2D SUMMA timing breakdown (per iteration avg):
+  Computation:  0.000518 s (98.3%)
+  Row Bcast:    0.000000 s (0.1%)
+  Col Reduce:   0.000008 s (1.6%)
+
+MPI processes: 2
+2D Process grid: 2 x 1
+Total received entries across ranks = 80518 (expected 80519)
+Total FLOPs = 161036 & Performance = 0.354 GFLOP/s
+NNZ per rank: min=36115 avg=40259.0 max=44403
+2D SUMMA timing breakdown (per iteration avg):
+  Computation:  0.000305 s (97.2%)
+  Row Bcast:    0.000001 s (0.2%)
+  Col Reduce:   0.000008 s (2.7%)
+
+MPI processes: 4
+2D Process grid: 2 x 2
+Total received entries across ranks = 80516 (expected 80519)
+Total FLOPs = 161032 & Performance = 0.177 GFLOP/s
+NNZ per rank: min=0 avg=20129.0 max=40897
+2D SUMMA timing breakdown (per iteration avg):
+  Computation:  0.000490 s (36.5%)
+  Row Bcast:    0.000467 s (34.8%)
+  Col Reduce:   0.000385 s (28.7%)
+
+MPI processes: 8
+2D Process grid: 4 x 2
+Total received entries across ranks = 80514 (expected 80519)
+Total FLOPs = 161028 & Performance = 0.205 GFLOP/s
+NNZ per rank: min=0 avg=10064.2 max=22683
+2D SUMMA timing breakdown (per iteration avg):
+  Computation:  0.000267 s (23.2%)
+  Row Bcast:    0.000546 s (47.4%)
+  Col Reduce:   0.000338 s (29.4%)
+
+MPI processes: 16
+2D Process grid: 4 x 4
+Total received entries across ranks = 80506 (expected 80519)
+Total FLOPs = 161012 & Performance = 0.161 GFLOP/s
+NNZ per rank: min=0 avg=5031.6 max=19682
+2D SUMMA timing breakdown (per iteration avg):
+  Computation:  0.000420 s (31.5%)
+  Row Bcast:    0.000611 s (45.8%)
+  Col Reduce:   0.000304 s (22.8%)
+
+MPI processes: 32
+2D Process grid: 8 x 4
+Total received entries across ranks = 80489 (expected 80519)
+Total FLOPs = 160978 & Performance = 0.114 GFLOP/s
+NNZ per rank: min=0 avg=2515.3 max=11484
+2D SUMMA timing breakdown (per iteration avg):
+  Computation:  0.000239 s (17.7%)
+  Row Bcast:    0.000844 s (62.6%)
+  Col Reduce:   0.000265 s (19.7%)
+
+MPI processes: 64
+2D Process grid: 8 x 8
+Total received entries across ranks = 80457 (expected 80519)
+Total FLOPs = 160914 & Performance = 0.139 GFLOP/s
+NNZ per rank: min=0 avg=1257.1 max=9771
+2D SUMMA timing breakdown (per iteration avg):
+  Computation:  0.000387 s (26.8%)
+  Row Bcast:    0.000813 s (56.4%)
+  Col Reduce:   0.000243 s (16.8%)
+
+MPI processes: 128
+2D Process grid: 16 x 8
+Total received entries across ranks = 80395 (expected 80519)
+Total FLOPs = 160790 & Performance = 0.002 GFLOP/s
+NNZ per rank: min=0 avg=628.1 max=6189
+2D SUMMA timing breakdown (per iteration avg):
+  Computation:  0.000275 s (0.9%)
+  Row Bcast:    0.026580 s (82.4%)
+  Col Reduce:   0.005401 s (16.7%)
+
+***********************************
+         WEAK SCALING — 1D
+***********************************
+MPI processes: 1
+------------------
+2D Process grid: 1 x 1
+Total received entries across ranks = 200000 (expected 200000)
+Total FLOPs = 400000 & Performance = 0.330 GFLOP/s
+NNZ per rank: min=200000 avg=200000.0 max=200000
+2D SUMMA timing breakdown (per iteration avg):
+  Computation:  0.001108 s (98.2%)
+  Row Bcast:    0.000001 s (0.1%)
+  Col Reduce:   0.000019 s (1.7%)
+
+MPI processes: 2
+------------------
+2D Process grid: 2 x 1
+Total received entries across ranks = 399999 (expected 400000)
+Total FLOPs = 799998 & Performance = 0.532 GFLOP/s
+NNZ per rank: min=199999 avg=199999.5 max=200000
+2D SUMMA timing breakdown (per iteration avg):
+  Computation:  0.001181 s (97.6%)
+  Row Bcast:    0.000001 s (0.1%)
+  Col Reduce:   0.000028 s (2.3%)
+
+MPI processes: 4
+------------------
+2D Process grid: 2 x 2
+Total received entries across ranks = 799997 (expected 800000)
+Total FLOPs = 1599994 & Performance = 0.336 GFLOP/s
+NNZ per rank: min=180190 avg=199999.2 max=219809
+2D SUMMA timing breakdown (per iteration avg):
+  Computation:  0.002834 s (56.7%)
+  Row Bcast:    0.000967 s (19.4%)
+  Col Reduce:   0.001196 s (23.9%)
+
+MPI processes: 8
+------------------
+2D Process grid: 4 x 2
+Total received entries across ranks = 1599993 (expected 1600000)
+Total FLOPs = 3199986 & Performance = 0.395 GFLOP/s
+NNZ per rank: min=179713 avg=199999.1 max=220286
+2D SUMMA timing breakdown (per iteration avg):
+  Computation:  0.003651 s (38.7%)
+  Row Bcast:    0.003973 s (42.1%)
+  Col Reduce:   0.001803 s (19.1%)
+
+MPI processes: 16
+------------------
+2D Process grid: 4 x 4
+Total received entries across ranks = 159985 (expected 160000)
+Total FLOPs = 319970 & Performance = 0.282 GFLOP/s
+NNZ per rank: min=8827 avg=9999.1 max=13045
+2D SUMMA timing breakdown (per iteration avg):
+  Computation:  0.000365 s (30.5%)
+  Row Bcast:    0.000556 s (46.6%)
+  Col Reduce:   0.000274 s (22.9%)
+
+MPI processes: 32
+------------------
+2D Process grid: 8 x 4
+Total received entries across ranks = 319972 (expected 320000)
+Total FLOPs = 639944 & Performance = 0.282 GFLOP/s
+NNZ per rank: min=8819 avg=9999.1 max=13251
+2D SUMMA timing breakdown (per iteration avg):
+  Computation:  0.000380 s (17.2%)
+  Row Bcast:    0.001453 s (66.0%)
+  Col Reduce:   0.000369 s (16.8%)
+
+MPI processes: 64
+------------------
+2D Process grid: 8 x 8
+Total received entries across ranks = 639938 (expected 640000)
+Total FLOPs = 1279876 & Performance = 0.305 GFLOP/s
+NNZ per rank: min=8762 avg=9999.0 max=17249
+2D SUMMA timing breakdown (per iteration avg):
+  Computation:  0.001219 s (25.7%)
+  Row Bcast:    0.002909 s (61.4%)
+  Col Reduce:   0.000609 s (12.9%)
+MPI processes: 128
+------------------
+2D Process grid: 16 x 8
+Total received entries across ranks = 1279879 (expected 1280000)
+Total FLOPs = 2559758 & Performance = 0.150 GFLOP/s
+NNZ per rank: min=8747 avg=9999.1 max=17213
+2D SUMMA timing breakdown (per iteration avg):
+  Computation:  0.001440 s (9.2%)
+  Row Bcast:    0.012464 s (80.1%)
+  Col Reduce:   0.001666 s (10.7%)

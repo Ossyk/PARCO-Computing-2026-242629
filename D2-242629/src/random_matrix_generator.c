@@ -2,10 +2,6 @@
 #include <stdlib.h>
 #include <time.h>
 
-/*
-  Generate a random sparse matrix in Matrix Market format
-  Each row has exactly K nonzeros (including diagonal)
-*/
 
 int main(int argc, char** argv) {
     if (argc < 5) {
@@ -38,20 +34,19 @@ int main(int argc, char** argv) {
         return 1;
     }
 
-    /* Matrix Market header */
+    //format the header as in original mtx files
     fprintf(f, "%%%%MatrixMarket matrix coordinate real general\n");
     fprintf(f, "%% Random synthetic matrix: N=%d, K=%d\n", N, K);
     fprintf(f, "%d %d %lld\n", N, N, NNZ);
 
     for (int i = 0; i < N; i++) {
-        /* Always include diagonal */
+        
         fprintf(f, "%d %d %f\n", i + 1, i + 1, 1.0);
 
-        /* Select remaining K-1 random columns */
         int written = 1;
         while (written < K) {
             int j = rand() % N;
-            if (j == i) continue;  // avoid duplicate diagonal
+            if (j == i) continue; 
             fprintf(f, "%d %d %f\n", i + 1, j + 1, 1.0);
             written++;
         }

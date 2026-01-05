@@ -7,9 +7,8 @@
 #define COLOR_RESET  "\033[0m"
 
 
-/* ============================
-   Data structures
-   ============================ */
+// ==== Data structures
+  
 
 typedef struct {
     int row;
@@ -25,9 +24,7 @@ typedef struct {
     double* values;
 } CSR;
 
-/* ============================
-   Utilities
-   ============================ */
+// ==== Utilities
 
 int owner(int idx, int size) {
     return idx % size;
@@ -42,13 +39,14 @@ int compute_local_nrows(int global_nrows, int rank, int size) {
 
 
 
-/* ============================
-   STEP 4 — Local SpMV kernel
-   ============================ */
+// ==== Local SpMV kernel
+  
 
 void local_spmv(const CSR* A, const double* x, double* y) {
 
-    /* MPI+OpenMP ready: just add pragma if desired */
+    //pragma added for when needed, in default the threads number is 1.
+    //and when we will explore the hybrid omp+mpi num_th will be set using export num_threads <T>
+    
     #pragma omp parallel for schedule(runtime)
     for (int r = 0; r < A->nrows; r++) {
         double sum = 0.0;
@@ -71,9 +69,7 @@ void flush_cache() {
 }
 
 
-/* ============================
-   MAIN
-   ============================ */
+// ==== MAIN
 
 int main(int argc, char** argv) {
 
@@ -111,9 +107,7 @@ int main(int argc, char** argv) {
     Entry* local_entries = NULL;
     int local_nnz = 0;
 
-    /* ============================
-       STEP 1 — Read & distribute
-       ============================ */
+    // ====  Read & distribute
 
     if (rank == 0) {
         FILE* f = fopen(argv[1], "r");
@@ -159,9 +153,8 @@ int main(int argc, char** argv) {
     MPI_Bcast(&M, 1, MPI_INT, 0, MPI_COMM_WORLD);
     MPI_Bcast(&N, 1, MPI_INT, 0, MPI_COMM_WORLD);
 
-    /* ============================
-       STEP 2 — COO → CSR
-       ============================ */
+    // ==== transformation COO → CSR
+ 
 
     CSR csr;
     csr.nnz = local_nnz;
@@ -195,17 +188,15 @@ int main(int argc, char** argv) {
     printf("Rank %d owns %d rows and %d nonzeros\n",rank, csr.nrows, csr.nnz);
     }
     
-    /* ============================
-       STEP 3 — Ghost exchange
-       ============================ */
+// ==== Ghost exchange
 
-    /* Build local vector x (owned entries only) */
+    // Build local vector x (owned entries only) 
     int local_vec_n = csr.nrows;
     double* local_x = malloc(local_vec_n * sizeof(double));
     for (int i = 0; i < local_vec_n; i++)
         local_x[i] = 1.0;  // filled with value=1
 
-    /* Prepare counts/displs for Allgatherv */
+    // Prepare counts/displs for Allgatherv 
     int* vec_counts = malloc(size * sizeof(int));
     int* vec_displs = malloc(size * sizeof(int));
 
@@ -241,13 +232,11 @@ int main(int argc, char** argv) {
 
 
 
-    /* Now global_x[j] is available → ghost elements resolved */
+    // Now global_x[j] is available → ghost elements resolved
 if (debug) {
     printf("Rank %d completed ghost exchange\n", rank);
     }
-        /* ============================
-       STEP 4 — Local y_i computation
-       ============================ */
+// ==== Local y_i computation
     
        
     double* local_y = malloc(csr.nrows * sizeof(double));
@@ -271,7 +260,7 @@ if (debug) {
       times[t]=t_comp_end - t_comp_start;
     }
     
-    /* Compute 90th percentile */
+    // ===Compute 90th percentile 
     for (int i = 0; i < iters - 1; i++) {
         for (int j = i + 1; j < iters; j++) {
             if (times[j] < times[i]) {
@@ -293,7 +282,7 @@ if (debug) {
     long long local_flops = 2LL * csr.nnz;
     long long total_flops;
     MPI_Reduce(&local_flops, &total_flops,1, MPI_LONG_LONG, MPI_SUM,0, MPI_COMM_WORLD);
-    ////// print flops and gflops
+    ///=== print flops and gflops
     if (rank == 0) {
       double gflops = (double)total_flops / comp_time / 1e9;
       printf(COLOR_GREEN "Total FLOPs = %lld  &  " COLOR_RESET, total_flops);
@@ -301,7 +290,7 @@ if (debug) {
     }
 
 
-    ////// balance metrics
+    //====Balance metrics
     int min_nnz, max_nnz, sum_nnz;
     
     MPI_Reduce(&local_nnz, &min_nnz, 1, MPI_INT, MPI_MIN, 0, MPI_COMM_WORLD);
@@ -357,7 +346,7 @@ if (debug) {
     }
     }
     
-    //printing times results
+    //====Printing times results
     
     if (rank == 0) {
     double total_time = ghost_time + comp_time + gather_time;
@@ -376,10 +365,7 @@ if (debug) {
            gather_time, 100.0 * gather_time / total_time);
     }
 
-
-    /* ============================
-       Cleanup
-       ============================ */
+// ==== Cleanup
 
     free(local_x);
     free(global_x);
