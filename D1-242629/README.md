@@ -24,19 +24,54 @@ qsub -I -q short_cpuQ -l select=1:ncpus=64:mem=64gb,walltime=01:00:00
 ```
 
 ---
-##  Option 1 — Manual Configuration
+##  Option 1 — Interactive Mode (Recommended)
+
+For an interactive experience:
 
 ###  Import from Git
 
-Clone the repository:
+Clone the repository and access the project directory :
 ```bash
 git clone https://github.com/Ossyk/PARCO-Computing-2026-242629.git
-```
-
-Access the project directory:
-```bash
 cd PARCO-Computing-2026-242629/
 ```
+### Run the interactive menu:
+
+Linux:
+
+```bash
+scripts/interactive_script_l.sh
+```
+
+Windows:
+```bash
+cd scripts
+./scripts/interactive_script_wd.bat
+```
+
+This menu allows you to:
+- Create a new matrix  
+- View available matrices  
+- Run sequential and parallel versions  
+- Execute default or personalized benchmarks  
+
+
+![Interactive Menu](plots/interactive%20menu.jpg)
+
+
+
+---
+
+##  Option 2 — Manual Configuration
+
+###  Import from Git
+
+Clone the repository and access the project directory :
+```bash
+git clone https://github.com/Ossyk/PARCO-Computing-2026-242629.git
+cd PARCO-Computing-2026-242629/
+```
+
 
 ---
 
@@ -45,7 +80,7 @@ cd PARCO-Computing-2026-242629/
 Compile with GCC inside the project directory:
 
 ```bash
-gcc src/matrix_generator.c src/csr_utils.c -o matrix_generator
+gcc src/matrix_generator.c src/csr_utils.c -o src/matrix_generator
 gcc -std=c99 -lm src/spMV_seq.c src/csr_utils.c -o src/spMV_seq
 gcc -fopenmp -std=c99 -lm src/spMV_parall.c src/csr_utils.c -o src/spMV_parall
 gcc -fopenmp -march=native -std=c99 -lm src/simd_vs_parallfor.c src/csr_utils.c -o src/simd_vs_parallfor
@@ -99,18 +134,8 @@ src/simd_vs_parallfor matrices/m3.csr 4 dynamic
 
 ---
 
-###  5. Run full benchmark (default script)
-```bash
-scripts/run_linux.sh <matrix_path>
-```
-Example:
-```bash
-scripts/run_linux.sh matrices/m3.csr
-```
 
----
-
-###  6. Run personalized benchmark (custom settings)
+###  5. Run full benchmark (custom settings)
 ```bash
 scripts/run_linux_personalized.sh <threads> <scheduler> <chunk> <matrix_path>
 ```
@@ -121,37 +146,22 @@ scripts/run_linux_personalized.sh 4 dynamic 10 matrices/m4.csr
 
 ---
 
-##  Option 2 — Interactive Mode (Recommended)
 
-For an easy experience, clone the project from git, access the project directory and run the interactive menu:
-```bash
-scripts/interactive_script_l.sh
-```
-
-This menu allows you to:
-- Create a new matrix  
-- View available matrices  
-- Run sequential and parallel versions  
-- Execute default or personalized benchmarks  
-
-
-![Interactive Menu](plots/interactive%20menu.jpg)
-
-
-
----
 
 ###  Notes
 - The code **flushes the CPU cache** between runs to avoid timing bias.  
 - Each multiplication is executed **10 times**, and the **90th percentile** runtime is reported for stable measurement.  
-- The benchmark automatically detects and displays the number of non-zero elements in the matrix.  
-
 ---
 
 ###  Author
 **Oussema Kasraoui**  
 University of Trento – *Parallel Computing (I2PP_D1)*  
 Academic Year **2025 / 2026**
+
+
+
+
+
 
 
 
