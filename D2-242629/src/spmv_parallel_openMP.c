@@ -1,4 +1,4 @@
-// spmv_omp.c
+
 #define _POSIX_C_SOURCE 199309L
 
 #include <stdio.h>
@@ -135,7 +135,7 @@ int main(int argc, char **argv) {
         return 1;
     }
 
-    /* ---------- Read MTX ---------- */
+    /* ---------- Read mtx ---------- */
     FILE *f = fopen(fname, "r");
     if (!f) { perror("fopen"); return 1; }
 
