@@ -31,7 +31,7 @@ int spMV_csr_parallel(const Sparse_CSR* A_csr, const double* vec, double* res) {
 }
 
 void flush_cache() {
-    const size_t size = 8 * 1024 * 1024; // 8 MB
+    const size_t size = 16 * 1024 * 1024; // 8 MB
     static char *buffer = NULL;
 
     if (!buffer) buffer = (char *)malloc(size);
@@ -113,7 +113,7 @@ int main(int argc, char **argv) {
     spMV_csr_parallel(&A_csr, x, y);
 
     /* Benchmark */
-    const int iters = 10;
+    const int iters = 15;
     double times[iters];
 
     for (int t = 0; t < iters; t++) {
@@ -140,17 +140,23 @@ int main(int argc, char **argv) {
     int index = (int)(0.9 * iters);
     if (index >= iters) index = iters - 1;
     double p90 = times[index];
+    
+    /* Compute GFLOP/s */
+    double time_sec = p90 / 1000.0;
+    double gflops = (2.0 * (double)nnz) / (time_sec * 1e9);
+
 
     const char *chunk_str = (chunk_size == 0) ? "default" : "";
     if (chunk_size == 0) {
         printf("Parallel CSR %zux%zu, nnz=%zu, threads=%d, schedule=%s, chunk=%s, "
-               "90th percentile=%.3f ms\n",
-               rows, cols, nnz, num_threads, schedule, chunk_str, p90);
+               "p90=%.3f ms, GFLOP/s=%.3f\n",
+               rows, cols, nnz, num_threads, schedule, "default", p90, gflops);
     } else {
         printf("Parallel CSR %zux%zu, nnz=%zu, threads=%d, schedule=%s, chunk=%d, "
-               "90th percentile=%.3f ms\n",
-               rows, cols, nnz, num_threads, schedule, chunk_size, p90);
+               "p90=%.3f ms, GFLOP/s=%.3f\n",
+               rows, cols, nnz, num_threads, schedule, chunk_size, p90, gflops);
     }
+
 
     free_sparse_csr(&A_csr);
     free(x); free(y);
