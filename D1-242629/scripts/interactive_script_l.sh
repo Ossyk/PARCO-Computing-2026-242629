@@ -83,7 +83,7 @@ while true; do
 		echo "enter chunks:"
 		read chunks
 		echo "enter matrix name: (without .csr)"
-		read matrix
+		read name
 
 	        gcc -fopenmp -std=c99 -lm src/spMV_parall.c src/csr_utils.c -o src/spMV_parall 
 		scripts/run_linux_personalized.sh $threads $scheduler $chunks matrices/$name.csr

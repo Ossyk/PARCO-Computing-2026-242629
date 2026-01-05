@@ -1,0 +1,7 @@
+matrices/random1M280.mtx
+matrices/random2M560.mtx
+matrices/randomN640k.mtx
+matrices/Flan_1565.mtx
+
+.nfs*
+

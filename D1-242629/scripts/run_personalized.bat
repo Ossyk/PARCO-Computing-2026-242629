@@ -1,5 +1,8 @@
 @echo off
+:: run_windows.bat - Windows batch script to run spMV_parall.exe
+:: This script should be in: project\scripts\
 
+:: Move to project root directory
 cd /d "%~dp0.."
 
 set THREADS=%1
@@ -30,7 +33,7 @@ echo Matrix: %MATRIX%
 echo ===================================
 echo.
 
-:: Test different thread scaling
+:: Test different thread counts with given schedule
 echo --- Testing thread scaling ---
 %EXE% 1 %SCHEDULER% %CHUNKS% %MATRIX%
 %EXE% 2 %SCHEDULER% %CHUNKS% %MATRIX%
@@ -38,11 +41,9 @@ echo --- Testing thread scaling ---
 %EXE% 8 %SCHEDULER% %CHUNKS% %MATRIX%
 %EXE% 16 %SCHEDULER% %CHUNKS% %MATRIX%
 %EXE% 32 %SCHEDULER% %CHUNKS% %MATRIX%
-%EXE% 64 %SCHEDULER% %CHUNKS% %MATRIX%
-
 echo.
 
-:: Test different schedules 
+:: Test different schedules with 4 threads
 echo --- Testing schedules ---
 %EXE% %THREADS% static %CHUNKS% %MATRIX%
 %EXE% %THREADS% dynamic %CHUNKS% %MATRIX%
@@ -50,7 +51,7 @@ echo --- Testing schedules ---
 %EXE% %THREADS% auto 0 %MATRIX%
 echo.
 
-:: Test different chunk sizes
+:: Test different chunk sizes with dynamic schedule
 echo --- Testing chunk sizes ---
 %EXE% %THREADS% %SCHEDULER% 1 %MATRIX%
 %EXE% %THREADS% %SCHEDULER% 10 %MATRIX%
@@ -64,5 +65,3 @@ echo Benchmarks Complete
 echo ===================================
 
 pause
-
-
