@@ -8,7 +8,7 @@ as well as an exploratory **hybrid MPI+OpenMP evaluation**.
 
 ###  Import from Git
 
-Clone the repository and access the project directory :
+Clone the repository:
 ```bash
 git clone https://github.com/Ossyk/PARCO-Computing-2026-242629.git
 cd PARCO-Computing-2026-242629/D2-242629/
@@ -16,6 +16,11 @@ cd PARCO-Computing-2026-242629/D2-242629/
 
 ### Requirements
 
+- Linux environment (HPC cluster recommended, requesting a queue with two nodes, providing 128 cores in total)
+```bash
+qsub -I -q short_cpuQ -l select=2:ncpus=64:mem=64gb,walltime=00:45:00
+```
+Inside the node:
 - GCC (tested with `gcc91`)
 - MPI implementation (`mpich-3.2.1--gcc-9.1.0`)
 - OpenMP support
@@ -24,9 +29,10 @@ module load gcc91
 module load mpich-3.2.1--gcc-9.1.0
 module load perf
 ```
-- Linux environment (HPC cluster recommended, requesting a queue with two nodes, providing 128 cores in total)
+
+Access the project directory:
 ```bash
-qsub -I -q short_cpuQ -l select=2:ncpus=64:mem=64gb,walltime=00:45:00
+cd PARCO-Computing-2026-242629/D2-242629/
 ```
 
 
@@ -57,17 +63,20 @@ PBS job scripts assume that all required matrices already exist.
 
 ---
 ### Compilation 
+For detailed debug, add the `--debug` flag.\
+To enable color printing in the terminal, add the `-DUSE_COLOR` flag.
+
 #### MPI versions 
 ```bash
 mpicc -fopenmp  src/spmv_mpi.c -o src/spmv_mpi
-mpicc -fopenmp src/spmv_mpi_parallelIO.c -o src/spmv_mpi_paralleIO
+mpicc -fopenmp src/spmv_mpi_parallelIO.c -o src/spmv_mpi_parallelIO
 mpicc -fopenmp src/spmv_mpi_2d_parallelIO.c -o src/spmv_mpi_2d_parallelIO
 ```
-For detailed debug, add the `--debug` flag
+
 
 #### OpenMP version
 ```bash
-gcc -fopenmp src/spmv_parallel_openMP.c -o src/spmv_omp
+gcc -fopenmp src/spmv_parallel_openMP.c -o src/spmv_parallel_openMP
 ```
 ---
 
@@ -114,12 +123,19 @@ src/spmv_parallel_openMP 32 static 1 matrices/webbase-1M.mtx
 
 | Script              | Description                                   | Execution Example |
 |---------------------|-----------------------------------------------|-------------------|
-| `omp_vs_mpi.sh`     | OpenMP vs MPI comparison on a single node     | `scripts/omp_vs_mpi.sh matrices/webbase-1M.mtx` |
 | `strong_scaling.sh` | Strong scaling (1–128 MPI ranks)              | `scripts/strong_scaling.sh matrices/webbase-1M.mtx` |
 | `weak_scaling.sh`   | Weak scaling with synthetic matrices          | `scripts/weak_scaling.sh` |
 | `run_spmv_1d.sh`    | MPI 1D SpMV execution                         | `scripts/run_spmv_1d.sh` |
 | `run_spmv_2d.sh`    | MPI 2D SpMV execution                         | `scripts/run_spmv_2d.sh` |
 | `run_spmv_hybrid.sh`| Hybrid MPI + OpenMP execution                 | `scripts/run_spmv_hybrid.sh` |
+
+To run the comparison between omp and mpi, request the a node with 64 cores.
+```bash
+qsub -I -q short_cpuQ -l select=1:ncpus=64:mem=64gb,walltime=00:45:00
+```
+| Script              | Description                                   | Execution Example |
+|---------------------|-----------------------------------------------|-------------------|
+| `omp_vs_mpi.sh`     | OpenMP vs MPI comparison on a single node     | `scripts/omp_vs_mpi.sh matrices/webbase-1M.mtx` |
 
 ---
 ### PBS Execution (Cluster)
@@ -128,9 +144,10 @@ PBS scripts are provided for reproducibility.
 qsub run_spmv_1d.pbs
 qsub run_spmv_2d.pbs
 qsub run_spmv_hybrid.pbs
+qsub run_spmv_omp_vs_mpi.pbs
 ```
 Each PBS script:
-- requests 2 nodes
+- requests 2 nodes (except for run_spmv_omp_vs_mpi.pbs)
 - allocates 64 cores per node
 - loads required modules
 - runs the corresponding experiment
@@ -148,6 +165,10 @@ For each configuration:
 **Oussema Kasraoui**  
 University of Trento – *Parallel Computing (I2PP_D1)*  
 Academic Year **2025 / 2026**
+
+
+
+
 
 
 
