@@ -18,7 +18,7 @@ cd PARCO-Computing-2026-242629/D2-242629/
 
 - Linux environment (HPC cluster recommended, requesting a queue with two nodes, providing 128 cores in total)
 ```bash
-qsub -I -q short_cpuQ -l select=2:ncpus=64:mem=64gb,walltime=00:45:00
+qsub -I -q short_cpuQ -l select=2:ncpus=64:mem=64gb,walltime=01:00:00
 ```
 Inside the node:
 - GCC (tested with `gcc91`)
@@ -104,7 +104,7 @@ mpirun -np 16 src/spmv_mpi_2d_parallelIO matrices/Flan_1565.mtx
 #### OpenMP SpMV (Single Node)
 OpenMP execution is intended for single-node runs only.
 ```bash
-qsub -I -q short_cpuQ -l select=1:ncpus=64:mem=64gb,walltime=00:45:00
+qsub -I -q short_cpuQ -l select=1:ncpus=64:mem=64gb,walltime=01:00:00
 ```
 
 Run the shared-memory OpenMP implementation:
@@ -165,6 +165,7 @@ For each configuration:
 **Oussema Kasraoui**  
 University of Trento – *Intro to Parallel Computing (I2PP_D2)*  
 Academic Year **2025 / 2026**
+
 
 
 
